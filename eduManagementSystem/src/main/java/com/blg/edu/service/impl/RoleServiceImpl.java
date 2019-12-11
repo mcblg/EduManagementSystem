@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @description:
@@ -36,6 +37,18 @@ public class RoleServiceImpl implements RoleService {
      */
     @Override
     public List<Role> getRoleByUserId(Long userId) {
+        return null;
+    }
+
+    /**
+     * @param userId
+     * @Author: huangdong on 2019/12/11
+     * @params: [userId]
+     * @return: java.util.Set<java.lang.String>
+     * @Description: 〈根据用户id获取角色code〉
+     */
+    @Override
+    public Set<String> getRoleCodeByUserId(Long userId) {
         return null;
     }
 }

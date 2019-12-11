@@ -3,6 +3,7 @@ package com.blg.edu.service;
 import com.blg.edu.entity.Permission;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @description:
@@ -35,4 +36,12 @@ public interface PermissionService {
      * @Description: 〈根据用户id获取权限〉
      */
     List<Permission> getPermissionByUserId(Long userId);
+
+    /**
+     * @Author: huangdong on 2019/12/11
+     * @params: [userId]
+     * @return: java.util.Set<java.lang.String>
+     * @Description: 〈根据用户id获取权限code〉
+     */
+    Set<String> getPerCodeByUserId(Long userId);
 }

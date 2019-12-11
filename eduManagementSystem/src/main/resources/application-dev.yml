@@ -21,9 +21,13 @@ spring:
 
 shiro:
   loginUrl: /login/login
-  unauthorizedUrl: /login/login
+  unauthorizedUrl: /common/403.html
+  successUrl: /
+
 
 logging:
   level:
     com.blg.edu.mapper: debug
-
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

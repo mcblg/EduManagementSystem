@@ -8,4 +8,7 @@ public interface UserMapper {
 
     @Select("select * from user where id = #{id}")
     User getUserById(@Param("id") Long id);
+
+    @Select("select * from user where user_name = #{userName}")
+    User getUserByUserName(@Param("userName") String userName);
 }

@@ -7,11 +7,7 @@
 </head>
 <body>
     <div>
-        <p id="user">${user.name}</p>
-        <p>${user.id}</p>
-        <p>${user.pwd}</p>
-        <p>${path}</p>
-        <button id="btm" class="btn btn-info">点我隐藏</button>
+        <p>登录了</p>
     </div>
     <script type="text/javascript">
     </script>

@@ -3,6 +3,7 @@ package com.blg.edu.service;
 import com.blg.edu.entity.Role;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @description:
@@ -26,4 +27,12 @@ public interface RoleService {
      * @Description: 〈根据用户id获取角色〉
      */
     List<Role> getRoleByUserId(Long userId);
+
+    /**
+     * @Author: huangdong on 2019/12/11
+     * @params: [userId]
+     * @return: java.util.Set<java.lang.String>
+     * @Description: 〈根据用户id获取角色code〉
+     */
+    Set<String> getRoleCodeByUserId(Long userId);
 }
