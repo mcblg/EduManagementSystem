@@ -113,6 +113,43 @@
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"/>
+        <table tableName="ecomm"
+                       enableCountByExample="false" enableUpdateByExample="false"
+                       enableDeleteByExample="false" enableSelectByExample="false"
+                       selectByExampleQueryId="false"/>
+        <table tableName="address"
+                       enableCountByExample="false" enableUpdateByExample="false"
+                       enableDeleteByExample="false" enableSelectByExample="false"
+                       selectByExampleQueryId="false"/>
+        <table tableName="picture"
+                       enableCountByExample="false" enableUpdateByExample="false"
+                       enableDeleteByExample="false" enableSelectByExample="false"
+                       selectByExampleQueryId="false"/>
+        <table tableName="user_relation"
+                               enableCountByExample="false" enableUpdateByExample="false"
+                               enableDeleteByExample="false" enableSelectByExample="false"
+                               selectByExampleQueryId="false"/>
+        <table tableName="learning_degree"
+                               enableCountByExample="false" enableUpdateByExample="false"
+                               enableDeleteByExample="false" enableSelectByExample="false"
+                               selectByExampleQueryId="false"/>
+        <table tableName="employee_history"
+                               enableCountByExample="false" enableUpdateByExample="false"
+                               enableDeleteByExample="false" enableSelectByExample="false"
+                               selectByExampleQueryId="false"/>
+        <table tableName="user_info_main"
+                               enableCountByExample="false" enableUpdateByExample="false"
+                               enableDeleteByExample="false" enableSelectByExample="false"
+                               selectByExampleQueryId="false"/>
+        <table tableName="student"
+                               enableCountByExample="false" enableUpdateByExample="false"
+                               enableDeleteByExample="false" enableSelectByExample="false"
+                               selectByExampleQueryId="false"/>
+        <table tableName="employee"
+                               enableCountByExample="false" enableUpdateByExample="false"
+                               enableDeleteByExample="false" enableSelectByExample="false"
+                               selectByExampleQueryId="false"/>
+
 
     </context>
 </generatorConfiguration>
