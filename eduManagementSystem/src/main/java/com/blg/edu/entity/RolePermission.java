@@ -1,46 +1,22 @@
 package com.blg.edu.entity;
 
+import lombok.Data;
 import lombok.ToString;
 
 @ToString
+@Data
 public class RolePermission {
-    private Long id;
+    private String id;
 
-    private Long roleId;
+    private String roleId;
 
-    private Long permissionId;
+    private String permissionId;
 
-    private Boolean status;
-
-    public Long getId() {
-        return id;
+    public RolePermission() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
+    public RolePermission(String roleId, String permissionId) {
         this.roleId = roleId;
-    }
-
-    public Long getPermissionId() {
-        return permissionId;
-    }
-
-    public void setPermissionId(Long permissionId) {
         this.permissionId = permissionId;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
     }
 }

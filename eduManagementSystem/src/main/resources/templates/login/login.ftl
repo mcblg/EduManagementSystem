@@ -1,99 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <title>Home</title>
-    <!-- Meta tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content=""/>
-    <#include "/common/common.ftl">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <#include "../common/common.ftl">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
     <script>
-        addEventListener("load", function () { setTimeout(hideURLbar, 0); }, false); function hideURLbar() { window.scrollTo(0, 1); }
+        $(document).ready(function () {
+            <#if Session["user"]?exists>
+                <#--window.location.href = "${path}/index";-->
+                window.location.replace("${path}/index");
+            </#if>
+        })
     </script>
-    <!-- Meta tags -->
-    <!--stylesheets-->
-    <link href="${path}/css/loginStyle.css" rel='stylesheet' type='text/css' media="all">
-    <!--//style sheet end here-->
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 </head>
-<body>
-<div class="mid-class">
-    <div class="art-right-w3ls">
-        <h2>登录</h2>
-        <form action="${path}/login/doLogin" method="post">
-            <div class="main">
-                <div class="form-left-to-w3l">
-                    <input type="text" name="userName" placeholder="用户名" autocomplete="off" required="">
-                </div>
-                <div class="form-left-to-w3l ">
-                    <input type="password" name="password" placeholder="密码" autocomplete="off" required="">
-                    <div class="clear"></div>
-                </div>
-                <p>${loginMsg! '123'}</p>
-                <#if loginMsg?? && loginMsg!=''>
-                    <div class="form-left-to-w3l">
-                        <p>${loginMsg}</p>
-                    </div>
-                <#else>
-                </#if>
-            </div>
-            <div class="left-side-forget">
-                <input type="checkbox" class="checked">
-                <span class="remenber-me">记住我</span>
-            </div>
-            <div class="right-side-forget">
-                <a href="#" class="for">忘记密码?</a>
-            </div>
-            <div class="clear"></div>
-            <div class="btnn">
-                <button type="submit">登录</button>
-            </div>
-        </form>
-        <div class="w3layouts_more-buttn">
-            <h3><a href="#content1">还没有账号?</a></h3>
-        </div>
-        <!-- popup-->
-        <div id="content1" class="popup-effect">
-            <div class="popup">
-                <!--login form-->
-                <div class="letter-w3ls">
-                    <form action="#" method="post">
-                        <div class="form-left-to-w3l">
-                            <input type="text" name="name" placeholder="Username" required="">
-                        </div>
-                        <div class="form-left-to-w3l">
-                            <input type="text" name="name" placeholder="Phone" required="">
-                        </div>
-                        <div class="form-left-to-w3l">
-                            <input type="email" name="email" placeholder="Email" required="">
-                        </div>
-                        <div class="form-left-to-w3l">
-                            <input type="password" name="password" placeholder="Password" required="">
-                        </div>
-                        <div class="form-left-to-w3l margin-zero">
-                            <input type="password" name="password" placeholder="Confirm Password" required="">
-                        </div>
-                        <div class="btnn">
-                            <button type="submit">注册</button>
-                            <br>
-                        </div>
-                    </form>
-                    <div class="clear"></div>
-                </div>
-                <!--//login form-->
-                <a class="close" href="#">&times;</a>
-            </div>
-        </div>
-        <!-- //popup -->
+<body class="hold-transition login-page">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>EDU-ADMINISTRATION-SYSTEM</b></a>
     </div>
-    <div class="art-left-w3ls">
-        <h1 class="header-w3ls">
-            XXXX<br/>教务系统
-        </h1>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">登录</p>
+
+            <form id="loginForm">
+                <div class="input-group mb-3">
+                    <input type="text" name="userName" class="form-control" autocomplete="off" placeholder="账号">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" class="form-control" placeholder="密码">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <span id="error-msg"></span>
+                <div class="row">
+                    <div class="col-8">
+                        <div class="icheck-primary">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">
+                                Remember Me
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">登录</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>
+        </div>
+        <!-- /.login-card-body -->
     </div>
 </div>
-<footer class="bottem-wthree-footer">
-    <p>Copyright &copy; blg 2019</p>
-</footer>
+<!-- /.login-box -->
+
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<script src="plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="plugins/jquery-validation/additional-methods.min.js"></script>
+
+<script src="https://cdn.bootcss.com/blueimp-md5/2.13.0/js/md5.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $.validator.setDefaults({
+            submitHandler: function () {
+                login()
+            }
+        });
+        $('#loginForm').validate({
+            rules: {
+                userName: {
+                    required: true,
+                },
+                password: {
+                    required: true,
+                },
+            },
+            messages: {
+                userName: {
+                    required: "请输入用户名",
+                },
+                password: {
+                    required: "请输入密码",
+                },
+                terms: "Please accept our terms"
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+
+    //登录
+    function login() {
+        let userName = $("input[name='userName']").val();
+        let password = $("input[name='password']").val();
+        if (userName)
+            $.post("${path}/doLogin", {userName: userName, password: md5(password)}, function (rs) {
+                console.log(rs)
+                if (rs.code == 0) {
+                    window.location.href = "${path}/index";
+                }else if (rs.code == 2001){
+                    $("#error-msg").text("用户不存在")
+                }else if (rs.code == 2002) {
+                    $("#error-msg").text("密码错误")
+                }else if (rs.code == 2003) {
+                    $("#error-msg").text("用户已锁定，请联系管理员")
+                }else if (rs.code == 2000) {
+                    $("#error-msg").text("登录错误")
+                }else {
+                    $("#error-msg").text("系统异常")
+                }
+            })
+    }
+</script>
+
 </body>
 </html>

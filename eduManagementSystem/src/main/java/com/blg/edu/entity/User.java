@@ -10,7 +10,7 @@ import java.util.Set;
 @ToString
 @Data
 public class User {
-    private Long id;
+    private String id;
 
     private String userName;
 
@@ -21,6 +21,10 @@ public class User {
     private Integer status;
 
     private Date createTime;
+
+    private String createUser;
+
+    private String universityId;
 
     private Set<String> roles = new HashSet<>();
 

@@ -5,12 +5,36 @@ server:
 
 
 spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
   datasource:
-    url: jdbc:mysql://134.175.93.141:3306/cwq?useUnicode=true&characterEncoding=utf8
+#    url: jdbc:mysql://134.175.93.141:3306/ea?useUnicode=true&characterEncoding=utf8
+#    username: root
+#    password: admin123456
+    url: jdbc:mysql://127.0.0.1:3306/ea?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+
+#  cache:
+#    redis:
+#      time-to-live: 60s
+#    type: redis
+#  redis:
+#    host: 134.175.93.141
+#    port: 6379
+#    timeout: 10000
+#    lettuce:
+#      pool:
+#        max-idle: 10
+#        max-active: 10
+#        min-idle: 5
+#        max-wait: 10000
+#    database: 0
+
 
   freemarker:
     suffix: .ftl
@@ -20,10 +44,11 @@ spring:
     template-loader-path: classpath:/templates
 
 shiro:
-  loginUrl: /login/login
-  unauthorizedUrl: /common/403.html
+  loginUrl: /login
+  unauthorizedUrl: /error/403.html
   successUrl: /
-
+  sessionManager:
+    sessionIdUrlRewritingEnabled: false
 
 logging:
   level:

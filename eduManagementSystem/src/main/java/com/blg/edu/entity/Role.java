@@ -1,66 +1,27 @@
 package com.blg.edu.entity;
 
+import lombok.Data;
 import lombok.ToString;
 
-@ToString
-public class Role {
-    private Long id;
+import java.util.Date;
 
-    private Long universityId;
+@ToString
+@Data
+public class Role {
+    private String id;
+
+    private String universityId;
 
     private String name;
 
     private String description;
 
-    private Boolean status;
+    private Integer status;
 
     private String roleCode;
 
-    public String getRoleCode() {
-        return roleCode;
-    }
+    private Date createTime;
 
-    public void setRoleCode(String roleCode) {
-        this.roleCode = roleCode;
-    }
+    private String createUser;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getUniversityId() {
-        return universityId;
-    }
-
-    public void setUniversityId(Long universityId) {
-        this.universityId = universityId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
 }

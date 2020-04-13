@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * @description:
- * @author: huangdong
+ * @author: chenjiahao
  * @create: 2019-12-10
  */
 
@@ -36,7 +36,7 @@ public class ShiroConfig {
          * 在@Controller注解的类的方法中加入@RequiresRole注解，会导致该方法无法映射请求，导致返回404。
          * 加入这项配置能解决这个bug
          */
-        creator.setUsePrefix(true);
+        creator.setProxyTargetClass(true);
         return creator;
     }
 
@@ -44,13 +44,16 @@ public class ShiroConfig {
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
         //哪些请求可以匿名访问
-        chain.addPathDefinition("/css/**", "anon");
-        chain.addPathDefinition("/js/**", "anon");
-        chain.addPathDefinition("/image/**", "anon");
-        chain.addPathDefinition("/fonts/**", "anon");
-        chain.addPathDefinition("/login/login", "anon");
-        chain.addPathDefinition("/login/doLogin", "anon");
+        chain.addPathDefinition("/dist/**", "anon");
+        chain.addPathDefinition("/plugins/**", "anon");
+        chain.addPathDefinition("/login", "anon");
+        chain.addPathDefinition("/doLogin", "anon");
         chain.addPathDefinition("/common/403.html", "anon");
+        chain.addPathDefinition("/druid/**", "anon");
+        chain.addPathDefinition("/index/generatePassword", "anon");
+        chain.addPathDefinition("/logout", "logout");
+
+        chain.addPathDefinition("/generatePassword", "anon");
 
         //除了以上的请求外，其它请求都需要登录
         chain.addPathDefinition("/**", "authc");

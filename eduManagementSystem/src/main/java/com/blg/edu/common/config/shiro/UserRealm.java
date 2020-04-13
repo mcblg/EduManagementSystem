@@ -1,9 +1,6 @@
 package com.blg.edu.common.config.shiro;
 
-import com.alibaba.fastjson.JSONArray;
-import com.blg.edu.common.Constant.UserStatus;
-import com.blg.edu.entity.Permission;
-import com.blg.edu.entity.Role;
+import com.blg.edu.common.enums.UserStatus;
 import com.blg.edu.entity.User;
 import com.blg.edu.service.PermissionService;
 import com.blg.edu.service.RoleService;
@@ -19,15 +16,12 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
  * @description:
- * @author: huangdong
+ * @author: chenjiahao
  * @create: 2019-12-10
  */
 @Slf4j
@@ -86,11 +80,11 @@ public class UserRealm extends AuthorizingRealm {
             throw new UnknownAccountException("用户[" + username + "]不存在");
         }
 
-        if (user.getStatus().equals(UserStatus.LOCK)) {
+        if (user.getStatus().equals(UserStatus.LOCK.getStatusCode())) {
             throw new LockedAccountException("用户已锁定");
         }
 
-        if (user.getStatus().equals(UserStatus.INVALID)) {
+        if (user.getStatus().equals(UserStatus.INVALID.getStatusCode())) {
             throw new LockedAccountException("无效用户");
         }
 
@@ -100,6 +94,8 @@ public class UserRealm extends AuthorizingRealm {
         Set<String> permissions = permissionService.getPerCodeByUserId(user.getId());
 //        user.getRoles().addAll(roles);
 //        user.getPermissions().addAll(permissions);
+        user.setRoles(roles);
+        user.setPermissions(permissions);
 
         SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(user, user.getPwd(), getName());
         if (user.getSalt() != null) {

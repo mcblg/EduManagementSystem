@@ -1,47 +1,62 @@
 package com.blg.edu.service;
 
 import com.blg.edu.entity.Permission;
+import com.blg.edu.entity.vo.PermissionInfoVo;
 
 import java.util.List;
 import java.util.Set;
 
 /**
  * @description:
- * @author: huangdong
+ * @author: chenjiahao
  * @create: 2019-12-10
  */
 
 public interface PermissionService {
 
     /**
-     * @Author: huangdong on 2019/12/10
+     * @Author: chenjiahao on 2019/12/10
      * @params: []
      * @return: com.blg.edu.entity.Permission
      * @Description: 〈根据id获取权限〉
      */
-    Permission getPermissionById(Long id);
+    Permission getPermissionById(String id);
+
+    List<Permission> getPermissionByPerCode(String perCode);
 
     /**
-     * @Author: huangdong on 2019/12/10
+     * @Author: chenjiahao on 2019/12/10
      * @params: []
      * @return: java.util.List<com.blg.edu.entity.Permission>
      * @Description: 〈根据角色id获取权限〉
      */
-    List<Permission> getPermisonByRoleId(Long roleId);
+    List<Permission> getPermissionByRoleId(String roleId);
 
     /**
-     * @Author: huangdong on 2019/12/10
+     * @Author: chenjiahao on 2019/12/10
      * @params: [userId]
      * @return: java.util.List<com.blg.edu.entity.Permission>
      * @Description: 〈根据用户id获取权限〉
      */
-    List<Permission> getPermissionByUserId(Long userId);
+    Set<Permission> getPermissionByUserId(String userId);
 
     /**
-     * @Author: huangdong on 2019/12/11
+     * @Author: chenjiahao on 2019/12/11
      * @params: [userId]
      * @return: java.util.Set<java.lang.String>
      * @Description: 〈根据用户id获取权限code〉
      */
-    Set<String> getPerCodeByUserId(Long userId);
+    Set<String> getPerCodeByUserId(String userId);
+
+    /**
+     * @Author: chenjiahao on 2020/4/7
+     * @params: []
+     * @return: java.util.List<com.blg.edu.entity.Permission>
+     * @Description: 〈获取所有权限〉
+     */
+    List<PermissionInfoVo> getPermissionList();
+
+    List<Permission> getParentPerm();
+
+    void addPermission(String name, String perCode, String url, Integer type, String parent);
 }

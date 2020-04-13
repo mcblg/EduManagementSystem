@@ -6,7 +6,7 @@ import org.apache.shiro.util.ByteSource;
 
 /**
  * @description:
- * @author: huangdong
+ * @author: chenjiahao
  * @create: 2019-12-11
  */
 public class SHA256Utils {

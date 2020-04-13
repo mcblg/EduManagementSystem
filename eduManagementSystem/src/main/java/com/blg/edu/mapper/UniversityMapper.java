@@ -1,17 +1,18 @@
 package com.blg.edu.mapper;
 
 import com.blg.edu.entity.University;
+import com.blg.edu.entity.vo.UniversityInfoVo;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 public interface UniversityMapper {
-    int deleteByPrimaryKey(Long id);
 
-    int insert(University record);
-
-    int insertSelective(University record);
-
-    University selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(University record);
-
-    int updateByPrimaryKey(University record);
+    @Select("SELECT " +
+            " u.*, " +
+            " us.user_name create_user_name  " +
+            "FROM " +
+            " university u " +
+            " LEFT JOIN USER us ON us.id = u.create_user_id")
+    List<UniversityInfoVo> getUniversityInfoList();
 }

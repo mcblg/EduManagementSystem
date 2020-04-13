@@ -1,66 +1,46 @@
 package com.blg.edu.entity;
 
+import lombok.Data;
 import lombok.ToString;
 
+import java.util.Date;
+
 @ToString
+@Data
 public class Permission {
-    private Long id;
+
+    private String id;
 
     private String name;
 
     private String url;
 
-    private Boolean status;
+    private Integer status;
 
     private String perCode;
 
-    private String preType;
+    private Integer perType;
 
-    public String getPerCode() {
-        return perCode;
+    private Date createTime;
+
+    private String createUser;
+
+    private Integer level;
+
+    private String parentId;
+
+    public Permission() {
     }
 
-    public void setPerCode(String perCode) {
-        this.perCode = perCode;
-    }
-
-    public String getPreType() {
-        return preType;
-    }
-
-    public void setPreType(String preType) {
-        this.preType = preType;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
+    public Permission(String name, String url, Integer status, String perCode, Integer perType, Date createTime, String createUser, Integer level, String parentId) {
+        this.name = name;
+        this.url = url;
         this.status = status;
+        this.perCode = perCode;
+        this.perType = perType;
+        this.createTime = createTime;
+        this.createUser = createUser;
+        this.level = level;
+        this.parentId = parentId;
     }
 }

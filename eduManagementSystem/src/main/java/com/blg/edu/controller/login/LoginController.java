@@ -1,40 +1,30 @@
 package com.blg.edu.controller.login;
 
+import com.blg.edu.common.enums.ResponseCode;
 import com.blg.edu.entity.User;
+import com.blg.edu.entity.dto.AjaxResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 
 /**
  * @description:
- * @author: huangdong
+ * @author: chenjiahao
  * @create: 2019-12-10
  */
 @Slf4j
-@Controller
-@RequestMapping("/login")
+@RestController
 public class LoginController {
 
-    @GetMapping("/login")
-    public String toLoginPage() {
-        if (SecurityUtils.getSubject().isAuthenticated()){
-            return "forward:/index/index";
-        }
-
-        return "/login/login";
-    }
-
     @PostMapping("/doLogin")
-    public String doLogin(String userName, String password, ModelMap modelMap) {
+    public ResponseEntity<AjaxResponse<String>> doLogin(String userName, String password) {
         Subject curUser = SecurityUtils.getSubject();
         try {
             curUser.login(new UsernamePasswordToken(userName, password));
@@ -42,24 +32,23 @@ public class LoginController {
             if (user == null) {
                 throw new AuthenticationException();
             }
-            return "forward:/index/index";
+            Session session = curUser.getSession();
+            session.setAttribute("user", user);
+            return ResponseEntity.ok(AjaxResponse.success("/edu/doLogin", ResponseCode.SUCCESS.getMessage()));
         } catch (UnknownAccountException uae) {
-            modelMap.addAttribute("loginMsg", "用户名或密码错误");
-            log.warn("userName不存在:", uae);
-            return "forward:/login/login";
+            log.warn("userName不存在:", uae.getMessage());
+            return ResponseEntity.ok(AjaxResponse.create(ResponseCode.LOGIN_FAILED_USER_NOT_EXIST, HttpStatus.OK, "/edu/doLogin", ResponseCode.LOGIN_FAILED_USER_NOT_EXIST.getMessage()));
         } catch (IncorrectCredentialsException ice) {
-            modelMap.addAttribute("loginMsg", "用户名或密码错误");
-            log.warn("密码错误", ice);
-            return "forward:/login/login";
+            log.warn("密码错误", ice.getMessage());
+            return ResponseEntity.ok(AjaxResponse.create(ResponseCode.LOGIN_FAILED_PASSWORD_IS_NOT_CORRECT, HttpStatus.OK, "/edu/doLogin", ResponseCode.LOGIN_FAILED_PASSWORD_IS_NOT_CORRECT.getMessage()));
         } catch (LockedAccountException lae) {
-            modelMap.addAttribute("loginMsg", "用户账号被锁定或者已失效");
-            log.warn("用户账号被锁定或者已失效", lae);
-            return "forward:/login/login";
+            log.warn("用户账号被锁定或者已失效", lae.getMessage());
+            return ResponseEntity.ok(AjaxResponse.create(ResponseCode.LOGIN_FAILED_USER_IS_LOCKED, HttpStatus.OK, "/edu/doLogin", ResponseCode.LOGIN_FAILED_USER_IS_LOCKED.getMessage()));
         } catch (AuthenticationException ae) {
-            modelMap.addAttribute("loginMsg", "登录失败"+ ae.getMessage());
-            log.warn("登录出错", ae);
-            return "forward:/login/login";
+            log.warn("登录出错", ae.getMessage());
+            return ResponseEntity.ok(AjaxResponse.create(ResponseCode.LOGIN_FAILED, HttpStatus.OK, "/edu/doLogin", ResponseCode.LOGIN_FAILED.getMessage()));
         }
 
     }
+
 }
