@@ -65,13 +65,15 @@
                     </div>
                 </div>
                 <div class="card-body">
+                <form id="addFieldTypeForm">
                     <div class="form-group">
                         <label for="universityName">类型名称</label>
-                        <input type="text" id="universityName" class="form-control">
+                        <input type="text" id="universityName" name="universityName" class="form-control">
                     </div>
                     <div class="col-md-12">
                         <input type="submit" value="保存" class="btn btn-success float-right">
                     </div>
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -97,7 +99,6 @@
                             <input type="submit" value="保存" class="btn btn-success float-right">
                         </div>
                     </div>
-
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -171,9 +172,41 @@
             ]
         });
 
-        $("#selectUniversity").select2({
+        $("#addFieldTypeForm").select2({
             theme: 'bootstrap4',
         })
+        $('#addFieldTypeForm').validate({
+                    rules: {
+                        universityName: {
+                            required: true,
+                        }
+
+                    },
+                    messages: {
+                        perCode: {
+                            remote: '编码已存在'
+                        }
+                    },
+                    errorElement: 'span',
+                    errorPlacement: function (error, element) {
+                        error.addClass('invalid-feedback');
+                        element.closest('.form-group').append(error);
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).addClass('is-invalid');
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).removeClass('is-invalid');
+                    },
+                    submitHandler: function(form) {
+                        console.log($('#addPermForm').serialize())
+                        $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
+                            console.log(rs)
+                        })
+                        return false;
+                    },
+                    invalidHandler: function(form, validator) {return false;}
+                });
     })
 
 </script>

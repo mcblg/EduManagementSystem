@@ -66,17 +66,19 @@
                     </div>
                 </div>
                 <div class="card-body">
+                <form id="addPositionForm">
                     <div class="form-group">
                         <label for="positionName">岗位名称</label>
-                        <input type="text" id="positionName" class="form-control">
+                        <input type="text" id="positionName" name="positionName" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="eName">英文名称</label>
-                        <input type="text" id="eName" class="form-control">
+                        <input type="text" id="eName" name="eName" class="form-control">
                     </div>
                     <div class="col-md-12">
                         <input type="submit" value="保存" class="btn btn-success float-right">
                     </div>
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -180,6 +182,42 @@
         $("#selectPosition").select2({
             theme: 'bootstrap4',
         })
+        $('#addPositionForm').validate({
+                            rules: {
+                                positionName: {
+                                    required: true,
+                                },
+                                rules: {
+                                                                eName: {
+                                                                    required: true,
+                                                                }
+
+                            },
+                            messages: {
+                                perCode: {
+                                    remote: '编码已存在'
+                                }
+                            },
+                            errorElement: 'span',
+                            errorPlacement: function (error, element) {
+                                error.addClass('invalid-feedback');
+                                element.closest('.form-group').append(error);
+                            },
+                            highlight: function (element, errorClass, validClass) {
+                                $(element).addClass('is-invalid');
+                            },
+                            unhighlight: function (element, errorClass, validClass) {
+                                $(element).removeClass('is-invalid');
+                            },
+                            submitHandler: function(form) {
+                                console.log($('#addPermForm').serialize())
+                                $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
+                                    console.log(rs)
+                                })
+                                return false;
+                            },
+                            invalidHandler: function(form, validator) {return false;}
+                        });
     })
 
 </script>

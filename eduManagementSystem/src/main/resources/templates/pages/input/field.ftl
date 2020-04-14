@@ -80,71 +80,72 @@
                     </div>
                 </div>
                 <div class="card-body">
+                <form id="addFieldForm">
                     <div class="form-group">
                         <label for="universityAreaName">学校场地名称</label>
-                        <input type="text" id="universityAreaName" class="form-control">
+                        <input type="text" id="universityAreaName" name="universityAreaName" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="selectUniversityArea">选择功能区</label>
-                        <select id="selectUniversityArea" class="form-control">
+                        <select id="selectUniversityArea" name="selectUniversityArea" class="form-control">
                             <option value="">请选择</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="floor">楼层</label>
-                        <input type="text" id="flooe" class="form-control">
+                        <input type="text" id="flooe" name="flooe" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="room">房间编号</label>
-                        <input type="text" id="room" class="form-control">
+                        <input type="text" id="room" name="room" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="length">长度</label>
-                        <input type="text" id="length" class="form-control">
+                        <input type="text" id="length" name="length" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="width">宽度</label>
-                        <input type="text" id="width" class="form-control">
+                        <input type="text" id="width" name="width" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="height">高度</label>
-                        <input type="text" id="height" class="form-control">
+                        <input type="text" id="height" name="height" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="maxVolumn">容纳人数</label>
-                        <input type="text" id="maxVolumn" class="form-control">
+                        <input type="text" id="maxVolumn" name="maxVolumn" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="selectFieldType">选择场地类型</label>
-                        <select id="selectFieldType" class="form-control">
+                        <select id="selectFieldType" name="selectFieldType" class="form-control">
                             <option value="">请选择</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="selectManagement">选择主管部门</label>
-                        <select id="selectManagement" class="form-control">
+                        <select id="selectManagement" name="selectManagement" class="form-control">
                             <option value="">请选择</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="selectAdministrator">选择管理人员</label>
-                        <select id="selectAdministrator" class="form-control">
+                        <select id="selectAdministrator" name="selectAdministrator" class="form-control">
                             <option value="">请选择</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="selectFieldType">选择场地类型</label>
-                        <select id="selectFieldType" class="form-control">
+                        <select id="selectFieldType" name="selectFieldType" class="form-control">
                             <option value="">请选择</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="chargeTime">管理时段</label>
-                        <input type="text" class="form-control" id="chargeTime">
+                        <input type="text" class="form-control" id="chargeTime" name="chargeTime">
                     </div>
                     <div class="form-group">
                         <label for="selectInOutDoor">选择场地环境</label>
-                        <select id="selectInOutDoor" class="form-control">
+                        <select id="selectInOutDoor" name="selectInOutDoor" class="form-control">
                             <option value="">请选择</option>
                             <option value="0">室内</option>
                             <option value="1">室外</option>
@@ -153,6 +154,7 @@
                     <div class="col-md-12">
                         <input type="submit" value="保存" class="btn btn-success float-right">
                     </div>
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -283,6 +285,90 @@
                 daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
             }
         })
+        $('#addFieldForm').validate({
+                    rules: {
+                        universityAreaName: {
+                            required: true,
+                        },
+                         rules: {
+                                        selectUniversityArea: {
+                                            required: true,
+                                        },
+                                         rules: {
+                                                        flooe: {
+                                                            required: true,
+                                                        },
+                                                         rules: {
+                                                                        room: {
+                                                                            required: true,
+                                                                        },
+                                                                         rules: {
+                                                                                        length: {
+                                                                                            required: true,
+                                                                                        },
+                          rules: {
+                                                  width: {
+                                                      required: true,
+                                                  },
+                                                   rules: {
+                                                                  height: {
+                                                                      required: true,
+                                                                  },
+                                                                   rules: {
+                                                                                  maxVolumn: {
+                                                                                      required: true,
+                                                                                  },
+                                                                                   rules: {
+                                                                                                  selectFieldType: {
+                                                                                                      required: true,
+                                                                                                  },
+                                                                                                   rules: {
+                                                                                                                  selectManagement: {
+                                                                                                                      required: true,
+                                                                                                                  },
+                         rules: {
+                                                 selectAdministrator: {
+                                                     required: true,
+                                                 },
+                                                  rules: {
+                                                                 selectFieldType: {
+                                                                     required: true,
+                                                                 },
+                                                                  rules: {
+                                                                                 chargeTime: {
+                                                                                     required: true,
+                                                                                 },
+                                                                                  rules: {
+                                                                                                 selectInOutDoor: {
+                                                                                                     required: true,
+                                                                                                 }
+
+                    },
+                    messages: {
+                        perCode: {
+                            remote: '编码已存在'
+                        }
+                    },
+                    errorElement: 'span',
+                    errorPlacement: function (error, element) {
+                        error.addClass('invalid-feedback');
+                        element.closest('.form-group').append(error);
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).addClass('is-invalid');
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).removeClass('is-invalid');
+                    },
+                    submitHandler: function(form) {
+                        console.log($('#addPermForm').serialize())
+                        $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
+                            console.log(rs)
+                        })
+                        return false;
+                    },
+                    invalidHandler: function(form, validator) {return false;}
+                });
     })
 
 </script>
