@@ -5,6 +5,7 @@ import com.blg.edu.entity.User;
 import com.blg.edu.entity.dto.AjaxResponse;
 import com.blg.edu.entity.vo.FieldInfoVo;
 import com.blg.edu.service.FieldService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class FieldController {
     @Autowired
     FieldService fieldService;
 
+    @RequiresPermissions("fieldInfo")
     @GetMapping("/field")
     public String field() {
         return "/pages/input/field";

@@ -5,6 +5,7 @@ import com.blg.edu.entity.User;
 import com.blg.edu.entity.dto.AjaxResponse;
 import com.blg.edu.entity.vo.ClazzInfoVo;
 import com.blg.edu.service.ClazzService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class ClazzController {
     @Autowired
     ClazzService clazzService;
 
+    @RequiresPermissions("classInfo")
     @GetMapping("/clazz")
     public String clazz() {
         return "/pages/input/clazz";

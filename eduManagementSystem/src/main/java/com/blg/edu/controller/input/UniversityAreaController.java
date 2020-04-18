@@ -5,6 +5,7 @@ import com.blg.edu.entity.User;
 import com.blg.edu.entity.dto.AjaxResponse;
 import com.blg.edu.entity.vo.AreaInfoVo;
 import com.blg.edu.service.AreaService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,7 @@ public class UniversityAreaController {
     @Autowired
     AreaService areaService;
 
+    @RequiresPermissions("areaInfo")
     @GetMapping("/universityArea")
     public String universityArea() {
         return "/pages/input/universityArea";

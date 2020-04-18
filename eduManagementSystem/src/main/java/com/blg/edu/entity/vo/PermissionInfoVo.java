@@ -14,4 +14,5 @@ import lombok.ToString;
 public class PermissionInfoVo extends Permission {
 
     private String createUserName;
+    private String parentName;
 }

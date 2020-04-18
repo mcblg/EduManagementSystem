@@ -67,18 +67,18 @@
                     </div>
                 </div>
                 <div class="card-body">
-                 <form id="addSemesterForm">
-                    <div class="form-group">
-                        <label for="positionName">学期名称</label>
-                        <input type="text" id="positionName" name="positionName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="semesterTime">时间</label>
-                        <input type="text" class="form-control" id="semesterTime" name="semesterTime">
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
+                    <form id="addSemesterForm">
+                        <div class="form-group">
+                            <label for="positionName">学期名称</label>
+                            <input type="text" id="positionName" name="positionName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="semesterTime">时间</label>
+                            <input type="text" class="form-control" id="semesterTime" name="semesterTime">
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="保存" class="btn btn-success float-right">
+                        </div>
                     </form>
                 </div>
                 <!-- /.card-body -->
@@ -163,30 +163,30 @@
                     </div>
                 </div>
                 <div class="card-body">
-                <form id="addVacationForm">
-                    <div class="form-group">
-                        <label for="vacationName">假期名称</label>
-                        <input type="text" id="vacationName" name="vacationName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectSemester-vacation">选择学期</label>
-                        <select id="selectSemester-vacation" name="selectSemester-vacation" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="vacationTime">时间</label>
-                        <input type="text" class="form-control" id="vacationTime" name="vacationTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectVacationType">选择类型</label>
-                        <select id="selectVacationType" name="selectVacationType" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
+                    <form id="addVacationForm">
+                        <div class="form-group">
+                            <label for="vacationName">假期名称</label>
+                            <input type="text" id="vacationName" name="vacationName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectSemester-vacation">选择学期</label>
+                            <select id="selectSemester-vacation" name="selectSemester-vacation" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="vacationTime">时间</label>
+                            <input type="text" class="form-control" id="vacationTime" name="vacationTime">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectVacationType">选择类型</label>
+                            <select id="selectVacationType" name="selectVacationType" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="保存" class="btn btn-success float-right">
+                        </div>
                     </form>
                 </div>
                 <!-- /.card-body -->
@@ -268,18 +268,18 @@
                     </div>
                 </div>
                 <div class="card-body">
-                <form id="addTimeForm">
-                    <div class="form-group">
-                        <label for="timeName">作息名称</label>
-                        <input type="text" id="timeName" name="timeName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="period">对应时间</label>
-                        <input type="text" id="period" name="period" class="form-control">
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
+                    <form id="addTimeForm">
+                        <div class="form-group">
+                            <label for="timeName">作息名称</label>
+                            <input type="text" id="timeName" name="timeName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="period">对应时间</label>
+                            <input type="text" id="period" name="period" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="保存" class="btn btn-success float-right">
+                        </div>
                     </form>
                 </div>
                 <!-- /.card-body -->
@@ -357,7 +357,7 @@
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
                                 '</div>'
-                        }else if (json.data[i].status == 1){
+                        } else if (json.data[i].status == 1) {
                             json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
@@ -417,7 +417,7 @@
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
                                 '</div>'
-                        }else if (json.data[i].status == 1){
+                        } else if (json.data[i].status == 1) {
                             json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
@@ -484,7 +484,7 @@
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
                                 '</div>'
-                        }else if (json.data[i].status == 1){
+                        } else if (json.data[i].status == 1) {
                             json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
@@ -507,123 +507,6 @@
                 {"data": "status"}
             ]
         });
-        $('#addSemesterForm').validate({
-                                    rules: {
-                                        positionName: {
-                                            required: true,
-                                        },
-                                        rules: {
-                                                                        semesterTime: {
-                                                                            required: true,
-                                                                        }
-
-                                    },
-                                    messages: {
-                                        perCode: {
-                                            remote: '编码已存在'
-                                        }
-                                    },
-                                    errorElement: 'span',
-                                    errorPlacement: function (error, element) {
-                                        error.addClass('invalid-feedback');
-                                        element.closest('.form-group').append(error);
-                                    },
-                                    highlight: function (element, errorClass, validClass) {
-                                        $(element).addClass('is-invalid');
-                                    },
-                                    unhighlight: function (element, errorClass, validClass) {
-                                        $(element).removeClass('is-invalid');
-                                    },
-                                    submitHandler: function(form) {
-                                        console.log($('#addPermForm').serialize())
-                                        $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
-                                            console.log(rs)
-                                        })
-                                        return false;
-                                    },
-                                    invalidHandler: function(form, validator) {return false;}
-                                });
-        $('#addVacationForm').validate({
-                                            rules: {
-                                                vacationName: {
-                                                    required: true,
-                                                },
-                                                rules: {
-                                                                                                selectSemester-vacation: {
-                                                                                                    required: true,
-                                             },
-                                             rules: {
-                                                                                             vacationTime: {
-                                                                                                 required: true,
-                                                                                             },
-
-                                                rules: {
-                                                                                selectVacationType: {
-                                                                                    required: true,
-                                                                                }
-
-                                            },
-                                            messages: {
-                                                perCode: {
-                                                    remote: '编码已存在'
-                                                }
-                                            },
-                                            errorElement: 'span',
-                                            errorPlacement: function (error, element) {
-                                                error.addClass('invalid-feedback');
-                                                element.closest('.form-group').append(error);
-                                            },
-                                            highlight: function (element, errorClass, validClass) {
-                                                $(element).addClass('is-invalid');
-                                            },
-                                            unhighlight: function (element, errorClass, validClass) {
-                                                $(element).removeClass('is-invalid');
-                                            },
-                                            submitHandler: function(form) {
-                                                console.log($('#addPermForm').serialize())
-                                                $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
-                                                    console.log(rs)
-                                                })
-                                                return false;
-                                            },
-                                            invalidHandler: function(form, validator) {return false;}
-                                        });
-        $('#addTimeForm').validate({
-                                            rules: {
-                                                timeName: {
-                                                    required: true,
-                                                },
-                                                rules: {
-                                                                                period: {
-                                                                                    required: true,
-                                                                                }
-
-                                            },
-                                            messages: {
-                                                perCode: {
-                                                    remote: '编码已存在'
-                                                }
-                                            },
-                                            errorElement: 'span',
-                                            errorPlacement: function (error, element) {
-                                                error.addClass('invalid-feedback');
-                                                element.closest('.form-group').append(error);
-                                            },
-                                            highlight: function (element, errorClass, validClass) {
-                                                $(element).addClass('is-invalid');
-                                            },
-                                            unhighlight: function (element, errorClass, validClass) {
-                                                $(element).removeClass('is-invalid');
-                                            },
-                                            submitHandler: function(form) {
-                                                console.log($('#addPermForm').serialize())
-                                                $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
-                                                    console.log(rs)
-                                                })
-                                                return false;
-                                            },
-                                            invalidHandler: function(form, validator) {return false;}
-                                        });
     })
 
 </script>

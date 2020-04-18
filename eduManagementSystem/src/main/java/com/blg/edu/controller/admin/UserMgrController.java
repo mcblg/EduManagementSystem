@@ -9,6 +9,7 @@ import com.blg.edu.entity.vo.UserInfoVo;
 import com.blg.edu.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class UserMgrController {
     @Autowired
     UserService userService;
 
+    @RequiresPermissions("userMgr")
     @GetMapping("/userMgr")
     public String userMgr() {
         return "/pages/admin/userMgr";

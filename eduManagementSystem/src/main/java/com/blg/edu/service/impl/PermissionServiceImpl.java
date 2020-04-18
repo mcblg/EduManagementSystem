@@ -35,7 +35,7 @@ public class PermissionServiceImpl implements PermissionService {
      * @Description: 〈根据id获取权限〉
      */
     @Override
-    public Permission getPermissionById(String id) {
+    public PermissionInfoVo getPermissionById(String id) {
         return permissionMapper.getPermissionById(id);
     }
 
@@ -107,5 +107,28 @@ public class PermissionServiceImpl implements PermissionService {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");
         Permission permission = new Permission(name, url, 0, perCode, type, new Date(), user.getId(), level, parent);
         permissionMapper.addPermission(permission);
+    }
+
+    @Override
+    public void editPermission(String permId, String name, String perCode, String url, Integer type, String parent) {
+        Integer level;
+        if (("0").equals(parent)) {
+            level = 1;
+            parent = "";
+        }else {
+            level = 2;
+        }
+        Permission permission = new Permission(permId, name, url, perCode, type, level, parent);
+        permissionMapper.updatePermission(permission);
+    }
+
+    @Override
+    public void lockOrUnlock(String permId, Integer status) {
+        permissionMapper.updateStatus(permId, status);
+    }
+
+    @Override
+    public Set<Permission> getMenu(String userId) {
+        return permissionMapper.getMenu(userId);
     }
 }

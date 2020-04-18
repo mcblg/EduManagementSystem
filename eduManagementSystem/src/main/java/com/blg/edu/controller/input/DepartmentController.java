@@ -5,6 +5,7 @@ import com.blg.edu.entity.User;
 import com.blg.edu.entity.dto.AjaxResponse;
 import com.blg.edu.entity.vo.DepartmentInfoVo;
 import com.blg.edu.service.DepartmentService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +26,7 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
+    @RequiresPermissions("departmentInfo")
     @GetMapping("/department")
     public String department() {
         return "/pages/input/department";

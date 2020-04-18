@@ -43,4 +43,14 @@ public class Permission {
         this.level = level;
         this.parentId = parentId;
     }
+
+    public Permission(String id, String name, String url, String perCode, Integer perType, Integer level, String parentId) {
+        this.id = id;
+        this.name = name;
+        this.url = url;
+        this.perCode = perCode;
+        this.perType = perType;
+        this.level = level;
+        this.parentId = parentId;
+    }
 }

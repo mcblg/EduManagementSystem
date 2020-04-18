@@ -70,40 +70,40 @@
                     </div>
                 </div>
                 <div class="card-body">
-                <form id="addDepartmentForm">
-                    <div class="form-group">
-                        <label for="departmentName">部门名称</label>
-                        <input type="text" id="departmentName" name="departmentName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="eName">英文名称</label>
-                        <input type="text" id="eName" name="eName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectHead">选择负责人</label>
-                        <select id="selectHead" name="selectHead" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="selectOfficeRoom">选择负责人办公室</label>
-                        <select id="selectOfficeRoom" name="selectOfficeRoom" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="departmentTel">联系电话</label>
-                        <input type="text" id="departmentTel" name="departmentTel" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectUniversityLeader">选择学校领导</label>
-                        <select id="selectUniversityLeader" name="selectUniversityLeader" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
+                    <form id="addDepartmentForm">
+                        <div class="form-group">
+                            <label for="departmentName">部门名称</label>
+                            <input type="text" id="departmentName" name="departmentName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="eName">英文名称</label>
+                            <input type="text" id="eName" name="eName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectHead">选择负责人</label>
+                            <select id="selectHead" name="selectHead" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectOfficeRoom">选择负责人办公室</label>
+                            <select id="selectOfficeRoom" name="selectOfficeRoom" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="departmentTel">联系电话</label>
+                            <input type="text" id="departmentTel" name="departmentTel" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectUniversityLeader">选择学校领导</label>
+                            <select id="selectUniversityLeader" name="selectUniversityLeader" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="保存" class="btn btn-success float-right">
+                        </div>
                     </form>
                 </div>
                 <!-- /.card-body -->
@@ -181,7 +181,7 @@
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
                                 '</div>'
-                        }else if (json.data[i].status == 1){
+                        } else if (json.data[i].status == 1) {
                             json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
@@ -212,58 +212,7 @@
         $("#selectUniversity").select2({
             theme: 'bootstrap4',
         })
-         $('#addDepartmentForm').validate({
-                            rules: {
-                                departmentName: {
-                                    required: true,
-                                },
-                                 rules: {
-                                                eName: {
-                                                    required: true,
-                                                },
-                                                 rules: {
-                                                                selectHead: {
-                                                                    required: true,
-                                                                },
-                                                                 rules: {
-                                                                                selectOfficeRoom: {
-                                                                                    required: true,
-                                                                                },
-                                                                                 rules: {
-                                                                                                departmentTel: {
-                                                                                                    required: true,
-                                                                                                },
-                                                                                              rules: {
-                                                                                                       selectUniversityLeader: {
-                                                                                                         required: true,
-                                                                                                               }
 
-                            },
-                            messages: {
-                                perCode: {
-                                    remote: '编码已存在'
-                                }
-                            },
-                            errorElement: 'span',
-                            errorPlacement: function (error, element) {
-                                error.addClass('invalid-feedback');
-                                element.closest('.form-group').append(error);
-                            },
-                            highlight: function (element, errorClass, validClass) {
-                                $(element).addClass('is-invalid');
-                            },
-                            unhighlight: function (element, errorClass, validClass) {
-                                $(element).removeClass('is-invalid');
-                            },
-                            submitHandler: function(form) {
-                                console.log($('#addPermForm').serialize())
-                                $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
-                                    console.log(rs)
-                                })
-                                return false;
-                            },
-                            invalidHandler: function(form, validator) {return false;}
-                        });
     })
 
 </script>

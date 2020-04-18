@@ -81,7 +81,30 @@ public interface PermissionMapper {
     @Select("select * from permission where per_code = #{perCode}")
     List<Permission> getPermissionByPerCode(String perCode);
 
-    @Select("select * from permission where id = #{id}")
-    Permission getPermissionById(String id);
+    @Select("select p.*,p1.name parent_name from permission p left join permission p1 on p1.id = p.parent_id where p.id = #{id}")
+    PermissionInfoVo getPermissionById(String id);
 
+    @Update("update permission set name = #{perm.name}, url = #{perm.url}, per_code = #{perm.perCode}, per_type = #{perm.perType}, level = #{perm.level}, parent_id = #{perm.parentId} " +
+            " where id = #{perm.id}")
+    void updatePermission(@Param("perm") Permission permission);
+
+    @Update("update permission set status = #{status} where id = #{permId} ")
+    void updateStatus(@Param("permId") String permId, @Param("status") Integer status);
+
+    @Select("SELECT" +
+            "	p.* " +
+            "FROM" +
+            "	permission p," +
+            "	role_permission rp," +
+            "	user_role ur," +
+            "	role r " +
+            "WHERE" +
+            "	r.id = ur.role_id " +
+            "	AND r.STATUS = 0 " +
+            "	AND p.STATUS = 0 " +
+            "	AND p.id = rp.permission_id " +
+            "	AND ur.role_id = rp.role_id " +
+            "   AND p.per_type = 1" +
+            "	AND ur.user_id = #{userId}")
+    Set<Permission> getMenu(String userId);
 }

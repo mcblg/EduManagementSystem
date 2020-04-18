@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>eduManagementSystem</name>
     <description>A Educational Management System</description>
+    <packaging>war</packaging>
 
     <properties>
         <java.version>1.8</java.version>

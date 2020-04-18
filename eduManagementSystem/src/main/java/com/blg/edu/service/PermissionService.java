@@ -20,7 +20,7 @@ public interface PermissionService {
      * @return: com.blg.edu.entity.Permission
      * @Description: 〈根据id获取权限〉
      */
-    Permission getPermissionById(String id);
+    PermissionInfoVo getPermissionById(String id);
 
     List<Permission> getPermissionByPerCode(String perCode);
 
@@ -59,4 +59,10 @@ public interface PermissionService {
     List<Permission> getParentPerm();
 
     void addPermission(String name, String perCode, String url, Integer type, String parent);
+
+    void editPermission(String permId, String name, String perCode, String url, Integer type, String parent);
+
+    void lockOrUnlock(String permId, Integer status);
+
+    Set<Permission> getMenu(String userId);
 }

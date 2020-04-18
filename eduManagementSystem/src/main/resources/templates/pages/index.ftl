@@ -79,113 +79,10 @@
             <#--     侧边栏-->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                    data-accordion="false">
+                    data-accordion="false" id="menu">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item">
-                        <a href="javascript:void(0);" onclick="menuClick('/userInfo')" id="userInfo" class="nav-link active">
-                            <i class="nav-icon fas fa-tachometer-alt"></i>
-                            <p>
-                                主页
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item has-treeview">
-                        <a href="javascript:void(0);" class="nav-link">
-                            <i class="nav-icon fas fa-copy"></i>
-                            <p>
-                                录入信息
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/university')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校信息</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/universityArea')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校功能区信息</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/field')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校场地信息</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/fieldType')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校场地类型信息</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/department')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校部门信息</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/college')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校学院信息</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/clazz')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校班级信息</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/position')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>学校岗位信息</p>
-                                </a>
-                            </li>
 
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/semester')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>录入校历信息</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-header">后台管理系统</li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fas fa-chart-pie"></i>
-                            <p>
-                                后台管理
-                                <i class="right fas fa-angle-left"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/userMgr')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>用户管理</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/roleMgr')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>角色管理</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="menuClick('/permMgr')" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>权限管理</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -206,13 +103,11 @@
     <!-- /.control-sidebar -->
 
     <!-- Main Footer -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2019 <a href="http://adminlte.io">AdminLTE.io</a>.</strong>
-        All rights reserved.
-        <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 3.0.3-pre
-        </div>
-    </footer>
+<#--    <footer class="main-footer">-->
+<#--        <div class="float-right d-none d-sm-inline-block">-->
+<#--            <b>Version</b> 1.0-->
+<#--        </div>-->
+<#--    </footer>-->
 </div>
 <!-- ./wrapper -->
 
@@ -245,9 +140,9 @@
 
 <script>
     $(document).ready(function () {
-        $("#userInfo").click()
+        menuClick("/userInfo")
 
-        $(".mt-2 .nav-link").click(function () {
+        $(document).on('click', '.mt-2 .nav-link', function (e) {
             if (!$(this).parent().hasClass('has-treeview')) {
                 $(".mt-2").find('.active').removeClass('active')
                 $(this).addClass('active')
@@ -256,10 +151,67 @@
                 }
             }
         })
+
+        $.get("${path}/getMenu", {}, function (rs) {
+            console.log(rs)
+            if (rs.code == 0) {
+                let menu = '<li class="nav-item">\n' +
+                    '    <a href="javascript:void(0);" onclick="menuClick(\'/userInfo\')" id="userInfo" class="nav-link active">\n' +
+                    '        <i class="nav-icon fas fa-tachometer-alt"></i>\n' +
+                    '        <p>\n' +
+                    '            主页\n' +
+                    '        </p>\n' +
+                    '    </a>\n' +
+                    '</li>'
+                for (let i = 0; i < rs.data.length; i++) {
+                    let html = '';
+                    if (rs.data[i].level == 1) {
+                        let html1 = '<li class="nav-item">\n' +
+                            '    <a href="javascript:void(0);" onclick="menuClick(\''+rs.data[i].url+'\')" id="userInfo" class="nav-link">\n' +
+                            '        <i class="nav-icon fas fa-tachometer-alt"></i>\n' +
+                            '        <p>\n' +
+                                        rs.data[i].name +
+                            '        </p>\n' +
+                            '    </a>\n'
+                        let html2 = '';
+                        for (let j = 0; j < rs.data.length; j++) {
+                            if (rs.data[j].level == 2 && rs.data[j].parentId == rs.data[i].id) {
+                                html2 += '<li class="nav-item">\n' +
+                                    '     <a href="javascript:void(0);" onclick="menuClick(\''+rs.data[j].url+'\')" class="nav-link">\n' +
+                                    '         <i class="far fa-circle nav-icon"></i>\n' +
+                                    '         <p>'+rs.data[j].name+'</p>\n' +
+                                    '     </a>\n' +
+                                    ' </li>'
+                            }
+                        }
+                        if (html2 != '') {
+                            html = html1 + '<ul class="nav nav-treeview">' + html2 + '</ul></li>'
+                        }else {
+                            html = html + '</li>'
+                        }
+                        menu += html
+                    }
+                }
+                $("#menu").html(menu)
+
+
+            }else {
+                alert("获取菜单失败，{"+rs.message+"}")
+            }
+
+        })
+
     })
 
     function menuClick(url) {
-        $(".content-wrapper").load("${path}"+url);
+        if (url == '/' || url == '' || url == null) {
+            return false;
+        }
+        $(".content-wrapper").load("${path}"+url, function (rs, status, xhr) {
+            if (status == 'error') {
+                window.location.href = "${path}/error/403.html"
+            }
+        });
     }
 </script>
 </body>

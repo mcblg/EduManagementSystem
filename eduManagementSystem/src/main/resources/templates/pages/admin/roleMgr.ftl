@@ -292,6 +292,11 @@
                 $(this).parent().parent().prev().children('.level1').prop('checked',true);
             }
         })
+        $(document).on('change', '.level1', function (e) {
+            if (!$(this).prop('checked')) {
+                $(this).parent().next().find('.level2').prop('checked',false);
+            }
+        })
 
         $('#confirm-permConfig').click(function (e) {
             let list = $('#permList input[type="checkbox"]:checked');

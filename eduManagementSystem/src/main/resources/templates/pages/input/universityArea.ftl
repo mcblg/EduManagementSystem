@@ -65,14 +65,14 @@
                     </div>
                 </div>
                 <div class="card-body">
-                <form id="addUniversityAreaForm">
-                    <div class="form-group">
-                        <label for="universityAreaName">学校功能区名称</label>
-                        <input type="text" id="universityAreaName" name="universityAreaName" class="form-control">
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
+                    <form id="addUniversityAreaForm">
+                        <div class="form-group">
+                            <label for="universityAreaName">学校功能区名称</label>
+                            <input type="text" id="universityAreaName" name="universityAreaName" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="保存" class="btn btn-success float-right">
+                        </div>
                     </form>
                 </div>
                 <!-- /.card-body -->
@@ -150,7 +150,7 @@
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
                                 '</div>'
-                        }else if (json.data[i].status == 1){
+                        } else if (json.data[i].status == 1) {
                             json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
@@ -176,38 +176,6 @@
         $("#selectUniversityArea").select2({
             theme: 'bootstrap4',
         })
-                $('#addUniversityAreaForm').validate({
-                    rules: {
-                        universityAreaName: {
-                            required: true,
-                        }
-
-                    },
-                    messages: {
-                        perCode: {
-                            remote: '编码已存在'
-                        }
-                    },
-                    errorElement: 'span',
-                    errorPlacement: function (error, element) {
-                        error.addClass('invalid-feedback');
-                        element.closest('.form-group').append(error);
-                    },
-                    highlight: function (element, errorClass, validClass) {
-                        $(element).addClass('is-invalid');
-                    },
-                    unhighlight: function (element, errorClass, validClass) {
-                        $(element).removeClass('is-invalid');
-                    },
-                    submitHandler: function(form) {
-                        console.log($('#addPermForm').serialize())
-                        $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
-                            console.log(rs)
-                        })
-                        return false;
-                    },
-                    invalidHandler: function(form, validator) {return false;}
-                });
     })
 
 </script>

@@ -69,37 +69,37 @@
                     </div>
                 </div>
                 <div class="card-body">
-                <form id="addClassForm">
-                    <div class="form-group">
-                        <label for="departmentName">班级名称</label>
-                        <input type="text" id="departmentName" name="departmentName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="eName">英文名称</label>
-                        <input type="text" id="eName" name="eName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="selectDepartment">选择部门</label>
-                        <select id="selectDepartment" name="selectDepartment" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="selectCollege">选择学院</label>
-                        <select id="selectCollege" name="selectCollege" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="selectHeadteacher">选择班主任</label>
-                        <select id="selectHeadteacher" name="selectHeadteacher" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
-                 </form>
+                    <form id="addClassForm">
+                        <div class="form-group">
+                            <label for="departmentName">班级名称</label>
+                            <input type="text" id="departmentName" name="departmentName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="eName">英文名称</label>
+                            <input type="text" id="eName" name="eName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="selectDepartment">选择部门</label>
+                            <select id="selectDepartment" name="selectDepartment" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectCollege">选择学院</label>
+                            <select id="selectCollege" name="selectCollege" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="selectHeadteacher">选择班主任</label>
+                            <select id="selectHeadteacher" name="selectHeadteacher" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="submit" value="保存" class="btn btn-success float-right">
+                        </div>
+                    </form>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -176,7 +176,7 @@
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
                                 '</div>'
-                        }else if (json.data[i].status == 1){
+                        } else if (json.data[i].status == 1) {
                             json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
@@ -208,54 +208,6 @@
         })
 
 
-        $('#addClassForm').validate({
-            rules: {
-                departmentName: {
-                    required: true,
-                },
-                 rules: {
-                                eName: {
-                                    required: true,
-                                },
-                                 rules: {
-                                                selectDepartment: {
-                                                    required: true,
-                                                },
-                                                 rules: {
-                                                                selectCollege: {
-                                                                    required: true,
-                                                                },
-                                                                 rules: {
-                                                                                selectHeadteacher: {
-                                                                                    required: true,
-                                                                                }
-
-            },
-            messages: {
-                perCode: {
-                    remote: '编码已存在'
-                }
-            },
-            errorElement: 'span',
-            errorPlacement: function (error, element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight: function (element, errorClass, validClass) {
-                $(element).addClass('is-invalid');
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).removeClass('is-invalid');
-            },
-            submitHandler: function(form) {
-                console.log($('#addPermForm').serialize())
-                $.post("${path}/addPerm", $('#addPermForm').serialize(), function (rs) {
-                    console.log(rs)
-                })
-                return false;
-            },
-            invalidHandler: function(form, validator) {return false;}
-        });
     })
 
 

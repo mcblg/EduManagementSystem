@@ -5,6 +5,7 @@ import com.blg.edu.entity.User;
 import com.blg.edu.entity.dto.AjaxResponse;
 import com.blg.edu.entity.vo.PositionInfoVo;
 import com.blg.edu.service.PositionService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class PositionController {
     @Autowired
     PositionService positionService;
 
-
+    @RequiresPermissions("positionInfo")
     @GetMapping("/position")
     public String position() {
         return "/pages/input/position";

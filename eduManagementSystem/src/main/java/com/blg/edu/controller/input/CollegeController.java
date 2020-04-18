@@ -5,6 +5,7 @@ import com.blg.edu.entity.User;
 import com.blg.edu.entity.dto.AjaxResponse;
 import com.blg.edu.entity.vo.CollegeInfoVo;
 import com.blg.edu.service.CollegeService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ public class CollegeController {
     @Autowired
     CollegeService collegeService;
 
+    @RequiresPermissions("collegeInfo")
     @GetMapping("/college")
     public String college() {
         return "/pages/input/college";
