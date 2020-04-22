@@ -21,6 +21,12 @@ public class VacationServiceImpl implements VacationService {
     @Autowired
     VacationMapper vacationMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.VacationInfoVo>
+     * @Description: 〈假期列表〉
+     */
     @Override
     public List<VacationInfoVo> getVacationList(String universityId) {
         return vacationMapper.getVacationList(universityId);

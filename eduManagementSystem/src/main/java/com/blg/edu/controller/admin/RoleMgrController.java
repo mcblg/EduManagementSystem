@@ -33,12 +33,24 @@ public class RoleMgrController {
     @Autowired
     RoleService roleService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈角色管理页面〉
+     */
     @RequiresPermissions("roleMgr")
     @GetMapping("/roleMgr")
     public String roleMgr() {
         return "/pages/admin/roleMgr";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.RoleInfoVo>>>
+     * @Description: 〈角色列表〉
+     */
     @GetMapping("/roleInfoList")
     @ResponseBody
     public ResponseEntity<AjaxResponse<List<RoleInfoVo>>> getRoleInfoList(HttpServletRequest request) {
@@ -55,6 +67,13 @@ public class RoleMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), roles));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [roleId, permIds, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.lang.String>>
+     * @Description: 〈角色权限配置〉
+     */
+    @RequiresPermissions("rolePermConfig")
     @PostMapping("/rolePermConfig")
     @ResponseBody
     public ResponseEntity<AjaxResponse<String>> rolePermConfig(@RequestParam("roleId") String roleId, @RequestParam("permIds[]") List<String> permIds, HttpServletRequest request) {

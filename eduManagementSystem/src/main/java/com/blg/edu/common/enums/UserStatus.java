@@ -3,7 +3,7 @@ package com.blg.edu.common.enums;
 import lombok.Getter;
 
 /**
- * @description:
+ * @description: 用户状态
  * @author: chenjiahao
  * @create: 2019-12-30
  */

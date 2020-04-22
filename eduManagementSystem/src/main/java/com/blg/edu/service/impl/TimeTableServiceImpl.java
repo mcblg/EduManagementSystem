@@ -21,6 +21,12 @@ public class TimeTableServiceImpl implements TimeTableService {
     @Autowired
     TimeTableMapper timeTableMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.TimeTableInfoVo>
+     * @Description: 〈作息表列表〉
+     */
     @Override
     public List<TimeTableInfoVo> getTimeTableList(String universityId) {
         return timeTableMapper.getTimeTableList(universityId);

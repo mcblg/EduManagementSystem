@@ -11,5 +11,11 @@ import java.util.List;
  */
 public interface FieldTypeService {
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.FieldTypeInfoVo>
+     * @Description: 〈场地类型列表〉
+     */
     List<FieldTypeInfoVo> getFieldTypeList(String universityId);
 }

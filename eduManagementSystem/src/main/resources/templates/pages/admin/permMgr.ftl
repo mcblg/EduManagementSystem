@@ -42,7 +42,9 @@
                             <th>权限类型</th>
                             <th>创建人</th>
                             <th>创建时间</th>
-                            <th>角色状态</th>
+                            <@shiro.hasPermission name="permLockOrUnLock">
+                                <th>角色状态</th>
+                            </@shiro.hasPermission>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,104 +58,109 @@
         </div>
 
         <div class="col-md-4">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">新增权限</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
+            <@shiro.hasPermission name="editPerm">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">新增权限</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <form id="addPermForm">
-                        <div class="form-group">
-                            <label for="permName">权限名称</label>
-                            <input type="text" id="permName" name="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="permCode">权限编码</label>
-                            <input type="text" id="permCode" name="perCode" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="url">URL</label>
-                            <input type="text" id="url" name="url" class="form-control" placeholder="格式： /****">
-                        </div>
-                        <div class="form-group">
-                            <label for="selectPermType">选择权限类型</label>
-                            <select id="selectPermType" name="type" class="form-control">
-                                <option selected disabled value="">请选择</option>
-                                <option value="1">菜单</option>
-                                <option value="2">功能</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="selectParentPerm">选择所属菜单(一级菜单)</label>
-                            <select id="selectParentPerm" name="parent" class="form-control">
-                            </select>
-                        </div>
-                        <div class="col-md-12">
-                            <input type="submit" value="保存" class="btn btn-success float-right">
-                        </div>
-                    </form>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <div class="card card-warning">
-                <div class="card-header">
-                    <h3 class="card-title">编辑权限</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <form id="editPermForm">
-                        <div class="form-group">
-                            <label for="selectPerm">选择权限</label>
-                            <select id="selectPerm" class="form-control" name="permId">
-                            </select>
-                        </div>
-                        <div id="editInfo" style="display: none">
-
+                    <div class="card-body">
+                        <form id="addPermForm">
                             <div class="form-group">
-                                <label for="permName-edit">权限名称</label>
-                                <input type="text" id="permName-edit" name="name" class="form-control">
+                                <label for="permName">权限名称</label>
+                                <input type="text" id="permName" name="name" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="permCode-edit">权限编码</label>
-                                <input type="text" id="permCode-edit" name="perCode" class="form-control">
-                                <input type="hidden" id="permCode-old">
+                                <label for="permCode">权限编码</label>
+                                <input type="text" id="permCode" name="perCode" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="url-edit">URL</label>
-                                <input type="text" id="url-edit" name="url" class="form-control"
-                                       placeholder="格式： /****">
+                                <label for="url">URL</label>
+                                <input type="text" id="url" name="url" class="form-control" placeholder="格式： /****">
                             </div>
                             <div class="form-group">
-                                <label for="selectPermType-edit">选择权限类型</label>
-                                <select id="selectPermType-edit" name="type" class="form-control">
+                                <label for="selectPermType">选择权限类型</label>
+                                <select id="selectPermType" name="type" class="form-control">
                                     <option selected disabled value="">请选择</option>
                                     <option value="1">菜单</option>
                                     <option value="2">功能</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="selectParentPerm-edit">选择所属菜单(一级菜单)</label>
-                                <select id="selectParentPerm-edit" name="parent" class="form-control">
+                                <label for="selectParentPerm">选择所属菜单(一级菜单)</label>
+                                <select id="selectParentPerm" name="parent" class="form-control">
                                 </select>
                             </div>
                             <div class="col-md-12">
                                 <input type="submit" value="保存" class="btn btn-success float-right">
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
-            </div>
+            </@shiro.hasPermission>
+            <@shiro.hasPermission name="editPerm">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">编辑权限</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form id="editPermForm">
+                            <div class="form-group">
+                                <label for="selectPerm">选择权限</label>
+                                <select id="selectPerm" class="form-control" name="permId">
+                                </select>
+                            </div>
+                            <div id="editInfo" style="display: none">
+
+                                <div class="form-group">
+                                    <label for="permName-edit">权限名称</label>
+                                    <input type="text" id="permName-edit" name="name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="permCode-edit">权限编码</label>
+                                    <input type="text" id="permCode-edit" name="perCode" class="form-control">
+                                    <input type="hidden" id="permCode-old">
+                                </div>
+                                <div class="form-group">
+                                    <label for="url-edit">URL</label>
+                                    <input type="text" id="url-edit" name="url" class="form-control"
+                                           placeholder="格式： /****">
+                                </div>
+                                <div class="form-group">
+                                    <label for="selectPermType-edit">选择权限类型</label>
+                                    <select id="selectPermType-edit" name="type" class="form-control">
+                                        <option selected disabled value="">请选择</option>
+                                        <option value="1">菜单</option>
+                                        <option value="2">功能</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="selectParentPerm-edit">选择所属菜单(一级菜单)</label>
+                                    <select id="selectParentPerm-edit" name="parent" class="form-control">
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <input type="submit" value="保存" class="btn btn-success float-right">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </@shiro.hasPermission>
+
             <!-- /.card -->
         </div>
     </div>
@@ -193,23 +200,23 @@
                 "dataSrc": function (json) {
                     for (let i = 0; i < json.data.length; i++) {
                         if (json.data[i].status == 0) {
-                            json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                            json.data[i].status = '<@shiro.hasPermission name="permLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs lock">\n' +
                                 '    <input type="radio" name="options" value="1" id="'+json.data[i].id+'" autocomplete="off">锁定' +
                                 '  </label>\n' +
                                 '  <label class="btn bg-olive btn-xs lock active">\n' +
                                 '    <input type="radio" name="options" value="0" id="'+json.data[i].id+'" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
-                                '</div>'
+                                '</div></@shiro.hasPermission>'
                         } else if (json.data[i].status == 1) {
-                            json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                            json.data[i].status = '<@shiro.hasPermission name="permLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs lock active">\n' +
                                 '    <input type="radio" name="options" value="1" id="'+json.data[i].id+'" autocomplete="off" checked>锁定' +
                                 '  </label>\n' +
                                 '  <label class="btn bg-olive btn-xs lock">\n' +
                                 '    <input type="radio" name="options" value="0" id="'+json.data[i].id+'" autocomplete="off">正常' +
                                 '  </label>\n' +
-                                '</div>'
+                                '</div></@shiro.hasPermission>'
                         }
                         if (json.data[i].perType == 2) {
                             json.data[i].perType = '功能'
@@ -226,8 +233,11 @@
                 {"data": "perCode"},
                 {"data": "perType"},
                 {"data": "createUserName"},
-                {"data": "createTime"},
+                {"data": "createTime"}
+                <@shiro.hasPermission name="permLockOrUnLock">
+                ,
                 {"data": "status"}
+                </@shiro.hasPermission>
             ]
         });
 

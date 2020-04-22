@@ -22,6 +22,12 @@ public class UniversityServiceImpl implements UniversityService {
     @Autowired
     UniversityMapper universityMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.util.List<com.blg.edu.entity.vo.UniversityInfoVo>
+     * @Description: 〈学校列表〉
+     */
     @Override
     public List<UniversityInfoVo> getUniversityInfoList() {
         return universityMapper.getUniversityInfoList();

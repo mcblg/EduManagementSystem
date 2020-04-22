@@ -21,6 +21,12 @@ public class CollegeServiceImpl implements CollegeService {
     @Autowired
     CollegeMapper collegeMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.CollegeInfoVo>
+     * @Description: 〈学院列表〉
+     */
     @Override
     public List<CollegeInfoVo> getCollegeInfo(String universityId) {
         return collegeMapper.getCollegeList(universityId);

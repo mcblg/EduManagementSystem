@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * @description:
+ * @description: 登录
  * @author: chenjiahao
  * @create: 2019-12-10
  */
@@ -23,11 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [userName, password]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.lang.String>>
+     * @Description: 〈登录〉
+     */
     @PostMapping("/doLogin")
     public ResponseEntity<AjaxResponse<String>> doLogin(String userName, String password) {
         Subject curUser = SecurityUtils.getSubject();
         try {
+            //验证用户名密码
             curUser.login(new UsernamePasswordToken(userName, password));
+            //验证通过将session交给shiro管理
             User user = (User) curUser.getPrincipal();
             if (user == null) {
                 throw new AuthenticationException();

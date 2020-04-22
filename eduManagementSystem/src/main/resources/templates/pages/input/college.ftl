@@ -45,7 +45,9 @@
                             <th>联系电话</th>
                             <th>创建人</th>
                             <th>创建时间</th>
+                            <@shiro.hasPermission name ="collegeLockOrUnLock">
                             <th>类型状态</th>
+                            </@shiro.hasPermission>
                         </tr>
                         </thead>
                         <tbody>
@@ -59,6 +61,7 @@
         </div>
 
         <div class="col-md-4">
+            <@shiro.hasPermission name ="addCollege">
             <div class="card card-info">
                 <div class="card-header">
                     <h3 class="card-title">新增学院信息</h3>
@@ -108,6 +111,8 @@
                 </div>
                 <!-- /.card-body -->
             </div>
+            </@shiro.hasPermission>
+            <@shiro.hasPermission name ="editCollege">
             <div class="card card-warning">
                 <div class="card-header">
                     <h3 class="card-title">编辑学院信息</h3>
@@ -134,6 +139,7 @@
                 </div>
                 <!-- /.card-body -->
             </div>
+            </@shiro.hasPermission>
             <!-- /.card -->
         </div>
     </div>
@@ -173,23 +179,23 @@
                 "dataSrc": function (json) {
                     for (let i = 0; i < json.data.length; i++) {
                         if (json.data[i].status == 0) {
-                            json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                            json.data[i].status = '<@shiro.hasPermission name ="collegeLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off">锁定' +
                                 '  </label>\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
-                                '</div>'
+                                '</div></@shiro.hasPermission>'
                         } else if (json.data[i].status == 1) {
-                            json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                            json.data[i].status = '<@shiro.hasPermission name ="collegeLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
                                 '  </label>\n' +
                                 '  <label class="btn bg-olive btn-xs">\n' +
                                 '    <input type="radio" name="options" id="enable" autocomplete="off">正常' +
                                 '  </label>\n' +
-                                '</div>'
+                                '</div></@shiro.hasPermission>'
                         }
                     }
                     return json.data;
@@ -204,8 +210,10 @@
                 {"data": "officeRoomName"},
                 {"data": "telephone"},
                 {"data": "createUserName"},
-                {"data": "createTime"},
-                {"data": "status"}
+                {"data": "createTime"}
+                <@shiro.hasPermission name ="collegeLockOrUnLock">
+                , {"data": "status"}
+                </@shiro.hasPermission>
             ]
         });
 

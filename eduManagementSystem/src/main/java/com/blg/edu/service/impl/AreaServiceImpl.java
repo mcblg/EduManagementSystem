@@ -21,6 +21,12 @@ public class AreaServiceImpl implements AreaService {
     @Autowired
     AreaMapper areaMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [UniversityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.AreaInfoVo>
+     * @Description: 〈功能区列表〉
+     */
     @Override
     public List<AreaInfoVo> getAreaInfoList(String UniversityId) {
         return areaMapper.getAreaInfoList(UniversityId);

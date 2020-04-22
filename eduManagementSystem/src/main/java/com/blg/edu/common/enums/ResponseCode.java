@@ -3,7 +3,7 @@ package com.blg.edu.common.enums;
 import org.springframework.http.HttpStatus;
 
 /**
- * @description:
+ * @description: 返回码
  * @author: chenjiahao
  * @create: 2020-03-30
  */

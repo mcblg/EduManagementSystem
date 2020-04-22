@@ -32,12 +32,24 @@ public class UserMgrController {
     @Autowired
     UserService userService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈用户管理页面〉
+     */
     @RequiresPermissions("userMgr")
     @GetMapping("/userMgr")
     public String userMgr() {
         return "/pages/admin/userMgr";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.UserInfoVo>>>
+     * @Description: 〈用户列表〉
+     */
     @GetMapping("/userList")
     @ResponseBody
     public ResponseEntity<AjaxResponse<List<UserInfoVo>>> getUserList(HttpServletRequest request) {
@@ -46,6 +58,13 @@ public class UserMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), list));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [userRole, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.lang.String>>
+     * @Description: 〈用户角色管理--添加角色〉
+     */
+    @RequiresPermissions("userRoleConfig")
     @PostMapping("/userRoleAdd")
     @ResponseBody
     public ResponseEntity<AjaxResponse<String>> userRoleAdd(@RequestBody UserRole userRole, HttpServletRequest request) {
@@ -53,6 +72,13 @@ public class UserMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), ""));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [userRole, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.lang.String>>
+     * @Description: 〈用户角色管理--删除角色〉
+     */
+    @RequiresPermissions("userRoleConfig")
     @PostMapping("/userRoleDelete")
     @ResponseBody
     public ResponseEntity<AjaxResponse<String>> userRoleDelete(@RequestBody UserRole userRole, HttpServletRequest request) {

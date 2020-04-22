@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 假期管理
  * @author: chenjiahao
  * @create: 2020-04-12
  */
@@ -24,6 +24,12 @@ public class VacationController {
     @Autowired
     VacationService vacationService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.VacationInfoVo>>>
+     * @Description: 〈假期管理页面〉
+     */
     @GetMapping("/vacationInfoList")
     public ResponseEntity<AjaxResponse<List<VacationInfoVo>>> getVacationList(HttpServletRequest request) {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");

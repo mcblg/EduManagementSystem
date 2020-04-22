@@ -1,5 +1,6 @@
 package com.blg.edu.service.impl;
 
+import com.blg.edu.common.enums.UserStatus;
 import com.blg.edu.common.util.SessionAttributeUtil;
 import com.blg.edu.entity.Permission;
 import com.blg.edu.entity.User;
@@ -105,7 +106,7 @@ public class PermissionServiceImpl implements PermissionService {
             level = 2;
         }
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");
-        Permission permission = new Permission(name, url, 0, perCode, type, new Date(), user.getId(), level, parent);
+        Permission permission = new Permission(name, url, UserStatus.AVAILABLE.getStatusCode(), perCode, type, new Date(), user.getId(), level, parent);
         permissionMapper.addPermission(permission);
     }
 

@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 学院管理
  * @author: chenjiahao
  * @create: 2020-04-12
  */
@@ -25,12 +25,24 @@ public class CollegeController {
     @Autowired
     CollegeService collegeService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈学院管理页面〉
+     */
     @RequiresPermissions("collegeInfo")
     @GetMapping("/college")
     public String college() {
         return "/pages/input/college";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.CollegeInfoVo>>>
+     * @Description: 〈学院列表〉
+     */
     @GetMapping("/collegeInfoList")
     public ResponseEntity<AjaxResponse<List<CollegeInfoVo>>> getCollegeInfoList(HttpServletRequest request) {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");

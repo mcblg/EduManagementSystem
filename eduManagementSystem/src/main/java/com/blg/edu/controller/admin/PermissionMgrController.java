@@ -30,12 +30,24 @@ public class PermissionMgrController {
     @Autowired
     PermissionService permissionService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈权限管理页面〉
+     */
     @RequiresPermissions("permMgr")
     @GetMapping("/permMgr")
     public String permMgr() {
         return "/pages/admin/permMgr";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < java.util.List < com.blg.edu.entity.vo.PermissionInfoVo>>>
+     * @Description: 〈全部权限列表〉
+     */
     @GetMapping("/permInfoList")
     @ResponseBody
     public ResponseEntity<AjaxResponse<List<PermissionInfoVo>>> getPermINfoList(HttpServletRequest request) {
@@ -43,6 +55,12 @@ public class PermissionMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), list));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [roleId, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < java.util.List < com.blg.edu.entity.Permission>>>
+     * @Description: 〈根据角色id获取权限〉
+     */
     @GetMapping("/permList")
     @ResponseBody
     public ResponseEntity<AjaxResponse<List<Permission>>> getPermList(@RequestParam("roleId") String roleId, HttpServletRequest request) {
@@ -50,6 +68,12 @@ public class PermissionMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), list));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < java.util.List < com.blg.edu.entity.Permission>>>
+     * @Description: 〈获取一级权限〉
+     */
     @GetMapping("/getParentPerm")
     @ResponseBody
     public ResponseEntity<AjaxResponse<List<Permission>>> getParentPerm(HttpServletRequest request) {
@@ -57,6 +81,13 @@ public class PermissionMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), parentPerm));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [name, perCode, url, type, parent, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < java.lang.String>>
+     * @Description: 〈新增权限〉
+     */
+    @RequiresPermissions("addPerm")
     @PostMapping("/addPerm")
     @ResponseBody
     public ResponseEntity<AjaxResponse<String>> addPermission(String name, String perCode, String url, Integer type, String parent, HttpServletRequest request) {
@@ -64,17 +95,29 @@ public class PermissionMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), ""));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [perCode]
+     * @return: java.lang.Boolean
+     * @Description: 〈验证perCode合法〉
+     */
     @PostMapping("/validatePerCode")
     @ResponseBody
     public Boolean validatePerCode(String perCode) {
         List<Permission> permissions = permissionService.getPermissionByPerCode(perCode);
         if (permissions.size() > 0) {
             return false;
-        }else {
+        } else {
             return true;
         }
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [permId, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < com.blg.edu.entity.vo.PermissionInfoVo>>
+     * @Description: 〈根据id获取权限〉
+     */
     @GetMapping("/getPermissionById")
     @ResponseBody
     public ResponseEntity<AjaxResponse<PermissionInfoVo>> getPermissionById(String permId, HttpServletRequest request) {
@@ -82,6 +125,13 @@ public class PermissionMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), perm));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [permId, name, perCode, url, type, parent, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < java.lang.String>>
+     * @Description: 〈编辑权限〉
+     */
+    @RequiresPermissions("editPerm")
     @PostMapping("/editPermission")
     @ResponseBody
     public ResponseEntity<AjaxResponse<String>> editPermission(String permId, String name, String perCode, String url, Integer type, String parent, HttpServletRequest request) {
@@ -89,6 +139,13 @@ public class PermissionMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), ""));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [permId, status, request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < java.lang.String>>
+     * @Description: 〈锁定或解除〉
+     */
+    @RequiresPermissions("permLockOrUnLock")
     @PostMapping("/PermLockOrUnLock")
     @ResponseBody
     public ResponseEntity<AjaxResponse<String>> LockOrUnlock(String permId, Integer status, HttpServletRequest request) {
@@ -96,6 +153,12 @@ public class PermissionMgrController {
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), ""));
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse < java.util.Set < com.blg.edu.entity.Permission>>>
+     * @Description: 〈获取用户菜单〉
+     */
     @GetMapping("/getMenu")
     @ResponseBody
     public ResponseEntity<AjaxResponse<Set<Permission>>> getMenu(HttpServletRequest request) {

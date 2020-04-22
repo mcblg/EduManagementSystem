@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
- * @description:
+ * @description: 错误页面配置
  * @author: chenjiahao
  * @create: 2020-04-08
  */

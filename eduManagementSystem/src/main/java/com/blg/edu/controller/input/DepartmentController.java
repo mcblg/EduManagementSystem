@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 部门管理
  * @author: chenjiahao
  * @create: 2020-04-10
  */
@@ -26,12 +26,24 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈部门管理页面〉
+     */
     @RequiresPermissions("departmentInfo")
     @GetMapping("/department")
     public String department() {
         return "/pages/input/department";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.DepartmentInfoVo>>>
+     * @Description: 〈部门列表〉
+     */
     @GetMapping("/departmentInfoList")
     public ResponseEntity<AjaxResponse<List<DepartmentInfoVo>>> getDepartmentInfoList(HttpServletRequest request) {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");

@@ -21,6 +21,12 @@ public class ClazzServiceImpl implements ClazzService {
     @Autowired
     ClazzMapper clazzMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.ClazzInfoVo>
+     * @Description: 〈班级列表〉
+     */
     @Override
     public List<ClazzInfoVo> getClazzList(String universityId) {
         return clazzMapper.getClazzList(universityId);

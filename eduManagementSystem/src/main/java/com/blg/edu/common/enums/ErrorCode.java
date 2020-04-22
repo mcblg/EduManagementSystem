@@ -4,7 +4,7 @@ import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
 /**
- * @description:
+ * @description: 错误码
  * @author: chenjiahao
  * @create: 2020-03-30
  */

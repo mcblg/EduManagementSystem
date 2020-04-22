@@ -11,6 +11,12 @@ import java.util.Map;
  */
 public class SessionAttributeNotExistException extends BaseException {
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [data]
+     * @return: session异常
+     * @Description: 〈〉
+     */
     public SessionAttributeNotExistException(Map<String, Object> data) {
         super(ErrorCode.SESSION_ATTR_NOT_EXIST, data);
     }

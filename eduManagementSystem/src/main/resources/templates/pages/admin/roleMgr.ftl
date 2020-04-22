@@ -41,8 +41,13 @@
                             <th>学校</th>
                             <th>创建人</th>
                             <th>创建时间</th>
-                            <th>角色状态</th>
-                            <th>权限功能配置</th>
+                            
+                            <@shiro.hasPermission name ="roleLockOrUnLock">
+                                <th>角色状态</th>
+                            </@shiro.hasPermission>
+                            <@shiro.hasPermission name="rolePermConfig">
+                                <th>权限功能配置</th>
+                            </@shiro.hasPermission>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,72 +61,77 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">新增角色</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
+        <@shiro.hasPermission name="addRole">
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">新增角色</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <#--运营管理员权限-->
-                        <label for="selectUniversity">选择学校</label>
-                        <select id="selectUniversity" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="roleName">角色名称</label>
-                        <input type="text" id="roleName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="roleCode">角色编码</label>
-                        <input type="text" id="roleCode" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">角色描述</label>
-                        <textarea id="description" class="form-control" rows="4" style="margin-top: 0px; margin-bottom: 0px; height: 141px;"></textarea>
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
-                </div>
-                <!-- /.card-body -->
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card card-warning">
-                <div class="card-header">
-                    <h3 class="card-title">编辑角色</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="selectRole">选择角色</label>
-                        <select id="selectRole" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div id="editInfo">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <#--运营管理员权限-->
+                            <label for="selectUniversity">选择学校</label>
+                            <select id="selectUniversity" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="roleName">角色名称</label>
+                            <input type="text" id="roleName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="roleCode">角色编码</label>
+                            <input type="text" id="roleCode" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">角色描述</label>
+                            <textarea id="description" class="form-control" rows="4" style="margin-top: 0px; margin-bottom: 0px; height: 141px;"></textarea>
+                        </div>
                         <div class="col-md-12">
                             <input type="submit" value="保存" class="btn btn-success float-right">
                         </div>
                     </div>
-
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
             </div>
-        </div>
+        </@shiro.hasPermission>
+        <@shiro.hasPermission name="editRole">
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">编辑角色</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="selectRole">选择角色</label>
+                            <select id="selectRole" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div id="editInfo">
+                            <div class="col-md-12">
+                                <input type="submit" value="保存" class="btn btn-success float-right">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </@shiro.hasPermission>
+
     </div>
 </section>
 <!-- /.content -->
@@ -190,25 +200,25 @@
                 "dataSrc": function (json) {
                     for (let i = 0; i < json.data.length; i++) {
                         if (json.data[i].status == 0) {
-                            json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                            json.data[i].status = '<@shiro.hasPermission name ="roleLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off">锁定' +
                                 '  </label>\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                 '  </label>\n' +
-                                '</div>'
+                                '</div></@shiro.hasPermission>'
                         }else if (json.data[i].status == 1){
-                            json.data[i].status = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                            json.data[i].status = '<@shiro.hasPermission name ="roleLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                 '  <label class="btn bg-olive btn-xs active">\n' +
                                 '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
                                 '  </label>\n' +
                                 '  <label class="btn bg-olive btn-xs">\n' +
                                 '    <input type="radio" name="options" id="enable" autocomplete="off">正常' +
                                 '  </label>\n' +
-                                '</div>'
+                                '</div></@shiro.hasPermission>'
                         }
-                        json.data[i].permConfig = '<button type="button" class="btn btn-info btn-xs btn-perm-config" data-toggle="modal" data-target="#permConfig" id="'+json.data[i].id+'">权限功能配置</button>'
+                        json.data[i].permConfig = '<@shiro.hasPermission name ="rolePermConfig"><button type="button" class="btn btn-info btn-xs btn-perm-config" data-toggle="modal" data-target="#permConfig" id="'+json.data[i].id+'">权限功能配置</button></@shiro.hasPermission>'
                     }
                     return json.data;
                 }
@@ -219,9 +229,13 @@
                 {"data": "roleCode"},
                 {"data": "uname"},
                 {"data": "createUserName"},
-                {"data": "createTime"},
-                {"data": "status"},
-                {"data": "permConfig"}
+                {"data": "createTime"}
+                <@shiro.hasPermission name ="roleLockOrUnLock">
+                , {"data": "status"}
+                </@shiro.hasPermission>
+                <@shiro.hasPermission name ="rolePermConfig">
+                , {"data": "permConfig"}
+                </@shiro.hasPermission>
             ]
         });
 

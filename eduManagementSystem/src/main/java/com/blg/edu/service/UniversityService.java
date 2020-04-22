@@ -12,5 +12,11 @@ import java.util.List;
  */
 public interface UniversityService {
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.util.List<com.blg.edu.entity.vo.UniversityInfoVo>
+     * @Description: 〈学校列表〉
+     */
     List<UniversityInfoVo> getUniversityInfoList();
 }

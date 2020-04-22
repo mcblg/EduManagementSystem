@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 岗位管理
  * @author: chenjiahao
  * @create: 2020-04-12
  */
@@ -25,12 +25,24 @@ public class PositionController {
     @Autowired
     PositionService positionService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈岗位管理页面〉
+     */
     @RequiresPermissions("positionInfo")
     @GetMapping("/position")
     public String position() {
         return "/pages/input/position";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.PositionInfoVo>>>
+     * @Description: 〈岗位列表〉
+     */
     @GetMapping("/positionInfoList")
     public ResponseEntity<AjaxResponse<List<PositionInfoVo>>> getPositionList(HttpServletRequest request) {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");

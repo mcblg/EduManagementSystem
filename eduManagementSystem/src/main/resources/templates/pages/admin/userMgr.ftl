@@ -41,9 +41,15 @@
                             <th>用户类型</th>
                             <th>创建人</th>
                             <th>创建时间</th>
+                            <@shiro.hasPermission name="userLockOrUnLock">
                             <th>账号状态</th>
+                            </@shiro.hasPermission>
+                            <@shiro.hasPermission name="changePWD">
                             <th>修改密码</th>
+                            </@shiro.hasPermission>
+                            <@shiro.hasPermission name="userRoleConfig">
                             <th>角色配置</th>
+                            </@shiro.hasPermission>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,189 +62,195 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="card card-info">
-                <div class="card-header">
-                    <h3 class="card-title">新增用户</h3>
+        <@shiro.hasPermission name="addUser">
+            <div class="col-md-6">
+                <div class="card card-info">
+                    <div class="card-header">
+                        <h3 class="card-title">新增用户</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fas fa-minus"></i></button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="inputName">用户名</label>
-                        <input type="text" id="userName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">密码</label>
-                        <input type="password" id="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="password-confirm">确认密码</label>
-                        <input type="password" id="password-confirm" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="userType">用户类型</label>
-                        <select class="form-control custom-select" id="userType">
-                            <option selected disabled>请选择</option>
-                            <option value="1">学生</option>
-                            <option value="2">教职员工</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">姓名</label>
-                        <input type="text" id="name" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="identification">身份证</label>
-                        <input type="text" id="identification" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="sex">性别</label>
-                        <select class="form-control custom-select" id="sex">
-                            <option selected disabled>请选择</option>
-                            <option value="0">男</option>
-                            <option value="1">女</option>
-                            <option value="2">不详</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="birthday">生日</label>
-                        <div>
-                            <input type="text" id="birthday" class="form-control">
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i></button>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="commType">联系方式类型</label>
-                        <select class="form-control custom-select" id="commType">
-                            <option selected disabled>请选择</option>
-                            <option value="0">QQ</option>
-                            <option value="1">微信</option>
-                            <option value="2">邮箱</option>
-                            <option value="3">移动电话号码</option>
-                            <option value="4">办公室电话号码</option>
-                            <option value="5">家庭电话号码</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="commContent">联系方式</label>
-                        <input type="text" id="commContent" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label>国家</label>
-                        <select class="form-control" id="country">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>省份</label>
-                        <select class="form-control" id="province">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>城市</label>
-                        <select class="form-control" id="city">
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">详细地址</label>
-                        <input type="text" id="address" placeholder="XX区（镇）XX街道 XXXX" class="form-control">
-                    </div>
-
-                    <#--后期加入图片上传-->
-                    <div class="form-group">
-                        <label for="university">学校</label>
-                        <select id="university" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="college">学院</label>
-                        <select id="college" class="form-control"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="major">专业</label>
-                        <select id="major" class="form-control"></select>
-                    </div>
-
-                    <div class="callout callout-info">
-                        <h5>更多信息</h5>
-                    </div>
-                    <div id="stuInfo" style="display: none">
-                        <div class="form-group">
-                            <label for="clazz">班级</label>
-                            <select id="clazz" class="form-control"></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="liveRoom">宿舍</label>
-                            <select id="liveRoom" class="form-control"></select>
-                        </div>
-                        <div class="form-group">
-                            <label for="grade">入学时间</label>
-                            <div>
-                                <input type="text" id="grade" class="form-control">
+                    <div class="card-body">
+                        <form id="addUserForm" action="#">
+                            <div class="form-group">
+                                <label for="inputName">用户名</label>
+                                <input type="text" id="userName" name="userName" class="form-control">
                             </div>
+                            <div class="form-group">
+                                <label for="password">密码</label>
+                                <input type="password" id="password" name="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password-confirm">确认密码</label>
+                                <input type="password" id="password-confirm" name="password-confirm" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="userType">用户类型</label>
+                                <select class="form-control custom-select" name="userType" id="userType">
+                                    <option selected disabled>请选择</option>
+                                    <option value="1">学生</option>
+                                    <option value="2">教职员工</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">姓名</label>
+                                <input type="text" id="name" name="name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="identification">身份证</label>
+                                <input type="text" id="identification" name="identification" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="sex">性别</label>
+                                <select class="form-control custom-select" id="sex" name="sex">
+                                    <option selected disabled>请选择</option>
+                                    <option value="0">男</option>
+                                    <option value="1">女</option>
+                                    <option value="2">不详</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="birthday">生日</label>
+                                <div>
+                                    <input type="text" id="birthday" name="birthday" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="commType">联系方式类型</label>
+                                <select class="form-control custom-select" id="commType" name="commType">
+                                    <option selected disabled>请选择</option>
+                                    <option value="0">QQ</option>
+                                    <option value="1">微信</option>
+                                    <option value="2">邮箱</option>
+                                    <option value="3">移动电话号码</option>
+                                    <option value="4">办公室电话号码</option>
+                                    <option value="5">家庭电话号码</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="commContent">联系方式</label>
+                                <input type="text" id="commContent" class="form-control" name="commContent">
+                            </div>
+                            <div class="form-group">
+                                <label>国家</label>
+                                <select class="form-control" id="country" name="country">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>省份</label>
+                                <select class="form-control" id="province" name="province">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>城市</label>
+                                <select class="form-control" id="city" name="city">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">详细地址</label>
+                                <input type="text" id="address" name="address" placeholder="XX区（镇）XX街道 XXXX" class="form-control">
+                            </div>
+
+                            <#--后期加入图片上传-->
+                            <div class="form-group">
+                                <label for="university">学校</label>
+                                <select id="university" name="university" class="form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="college">学院</label>
+                                <select id="college" name="college" class="form-control"></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="major">专业</label>
+                                <select id="major" name="major" class="form-control"></select>
+                            </div>
+
+                            <div class="callout callout-info">
+                                <h5>更多信息</h5>
+                            </div>
+                            <div id="stuInfo" style="display: none">
+                                <div class="form-group">
+                                    <label for="clazz">班级</label>
+                                    <select id="clazz" name="clazz" class="form-control"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="liveRoom">宿舍</label>
+                                    <select id="liveRoom" name="liveRoom" class="form-control"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="grade">入学时间</label>
+                                    <div>
+                                        <input type="text" id="grade" name="grade" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="empInfo" style="display: none">
+                                <div class="form-group">
+                                    <label for="title">职称</label>
+                                    <select class="form-control custom-select" id="title" name="title">
+                                        <option selected disabled>请选择</option>
+                                        <option value="0">助教</option>
+                                        <option value="1">讲师</option>
+                                        <option value="2">副教授</option>
+                                        <option value="3">教授</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="position">行政岗位</label>
+                                    <select id="position" class="form-control" name="position"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="beginTeach">入职时间</label>
+                                    <div>
+                                        <input type="text" id="beginTeach" name="beginTeach" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="submit" id="addUser-confirm" value="保存" class="btn btn-success float-right">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </@shiro.hasPermission>
+
+        <@shiro.hasPermission name="editUser">
+            <div class="col-md-6">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">编辑用户</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
                         </div>
                     </div>
-                    <div id="empInfo" style="display: none">
+                    <div class="card-body">
                         <div class="form-group">
-                            <label for="title">职称</label>
-                            <select class="form-control custom-select" id="title">
-                                <option selected disabled>请选择</option>
-                                <option value="0">助教</option>
-                                <option value="1">讲师</option>
-                                <option value="2">副教授</option>
-                                <option value="3">教授</option>
+                            <label for="selectUser">选择用户</label>
+                            <select id="selectUser" class="form-control">
+                                <option value="">请选择</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="position">行政岗位</label>
-                            <select id="position" class="form-control"></select>
+                        <div id="editInfo">
+
                         </div>
-                        <div class="form-group">
-                            <label for="beginTeach">入职时间</label>
-                            <div>
-                                <input type="text" id="beginTeach" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <input type="submit" value="保存" class="btn btn-success float-right">
-                    </div>
 
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <!-- /.card-body -->
+                <!-- /.card -->
             </div>
-            <!-- /.card -->
-        </div>
+        </@shiro.hasPermission>
 
-        <div class="col-md-6">
-            <div class="card card-warning">
-                <div class="card-header">
-                    <h3 class="card-title">编辑用户</h3>
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="selectUser">选择用户</label>
-                        <select id="selectUser" class="form-control">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                    <div id="editInfo">
-
-                    </div>
-
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
     </div>
 </section>
 <!-- /.content -->
@@ -281,7 +293,7 @@
     $(document).ready(function () {
         $.fn.dataTable.ext.errMode = 'none';
         //加载json文件
-        var areaJson = {}
+        let areaJson = {};
         $.ajax({
             url: "area.json",
             async: false,
@@ -292,6 +304,24 @@
 
 
         $('#birthday').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: "YYYY-MM-DD",
+                separator: " - ",
+                daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+            }
+        });
+        $("#grade").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: "YYYY-MM-DD",
+                separator: " - ",
+                daysOfWeek: ["日", "一", "二", "三", "四", "五", "六"],
+            }
+        });
+        $("#beginTeach").daterangepicker({
             singleDatePicker: true,
             showDropdowns: true,
             locale: {
@@ -496,26 +526,26 @@
                                 json.data[i].userType = "<span class='badge bg-primary'>教职员工</span>"
                             }
                             if (json.data[i].userStatus == 0) {
-                                json.data[i].userStatus = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                                json.data[i].userStatus = '<@shiro.hasPermission name="userLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                     '  <label class="btn bg-olive btn-xs">\n' +
                                     '    <input type="radio" name="options" id="lock" autocomplete="off">锁定' +
                                     '  </label>\n' +
                                     '  <label class="btn bg-olive btn-xs active">\n' +
                                     '    <input type="radio" name="options" id="enable" autocomplete="off" checked>正常' +
                                     '  </label>\n' +
-                                    '</div>'
+                                    '</div></@shiro.hasPermission>'
                             } else if (json.data[i].userStatus == 1) {
-                                json.data[i].userStatus = '<div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
+                                json.data[i].userStatus = '<@shiro.hasPermission name="userLockOrUnLock"><div class="btn-group btn-group-toggle" data-toggle="buttons">\n' +
                                     '  <label class="btn bg-olive btn-xs active">\n' +
                                     '    <input type="radio" name="options" id="lock" autocomplete="off" checked>锁定' +
                                     '  </label>\n' +
                                     '  <label class="btn bg-olive btn-xs">\n' +
                                     '    <input type="radio" name="options" id="enable" autocomplete="off">正常' +
                                     '  </label>\n' +
-                                    '</div>'
+                                    '</div></@shiro.hasPermission>'
                             }
-                            json.data[i].changePwd = '<button type="button" class="btn btn-warning btn-xs">修改密码</button>'
-                            json.data[i].roleConfig = '<button type="button" class="btn btn-info btn-xs btn-role-config" data-toggle="modal" data-target="#roleConfig" id="'+json.data[i].id+'">角色配置</button>'
+                            json.data[i].changePwd = '<@shiro.hasPermission name="changePWD"><button type="button" class="btn btn-warning btn-xs">修改密码</button></@shiro.hasPermission>'
+                            json.data[i].roleConfig = '<@shiro.hasPermission name="userRoleConfig"><button type="button" class="btn btn-info btn-xs btn-role-config" data-toggle="modal" data-target="#roleConfig" id="'+json.data[i].id+'">角色配置</button></@shiro.hasPermission>'
                         }
                         return json.data;
                     }
@@ -527,10 +557,16 @@
                 {"data": "university"},
                 {"data": "userType"},
                 {"data": "createUser"},
-                {"data": "createTime"},
-                {"data": "userStatus"},
-                {"data": "changePwd"},
-                {"data": "roleConfig"}
+                {"data": "createTime"}
+                <@shiro.hasPermission name="userLockOrUnLock">
+                , {"data": "userStatus"}
+                </@shiro.hasPermission>
+                <@shiro.hasPermission name="changePWD">
+                , {"data": "changePwd"}
+                </@shiro.hasPermission>
+                <@shiro.hasPermission name="userRoleConfig">
+                , {"data": "roleConfig"}
+                </@shiro.hasPermission>
             ]
         });
 
@@ -611,6 +647,12 @@
                     }
                 })
             }
+
+        })
+
+        $("#addUser-confirm").click(function () {
+            console.log($("#addUserForm").serializeObject());
+            return false;
 
         })
     })

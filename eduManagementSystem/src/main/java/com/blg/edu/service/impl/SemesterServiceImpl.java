@@ -21,6 +21,12 @@ public class SemesterServiceImpl implements SemesterService {
     @Autowired
     SemesterMapper semesterMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.SemesterInfoVo>
+     * @Description: 〈学期列表〉
+     */
     @Override
     public List<SemesterInfoVo> getSemesterList(String universityId) {
         return semesterMapper.getSemesterList(universityId);

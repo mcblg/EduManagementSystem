@@ -21,6 +21,12 @@ public class PositionServiceImpl implements PositionService {
     @Autowired
     PositionMapper positionMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.PositionInfoVo>
+     * @Description: 〈岗位列表〉
+     */
     @Override
     public List<PositionInfoVo> getPositionList(String universityId) {
         return positionMapper.getPositionList(universityId);

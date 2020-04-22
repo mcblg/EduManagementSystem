@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 学校功能区管理
  * @author: chenjiahao
  * @create: 2020-04-09
  */
@@ -26,12 +26,24 @@ public class UniversityAreaController {
     @Autowired
     AreaService areaService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈学校功能区管理页面〉
+     */
     @RequiresPermissions("areaInfo")
     @GetMapping("/universityArea")
     public String universityArea() {
         return "/pages/input/universityArea";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.AreaInfoVo>>>
+     * @Description: 〈学校功能区列表〉
+     */
     @GetMapping("/universityAreaInfoList")
     public ResponseEntity<AjaxResponse<List<AreaInfoVo>>> getUniversityInfoList(HttpServletRequest request) {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");

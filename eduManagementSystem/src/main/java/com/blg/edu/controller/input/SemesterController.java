@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 学期管理
  * @author: chenjiahao
  * @create: 2020-04-12
  */
@@ -25,12 +25,24 @@ public class SemesterController {
     @Autowired
     SemesterService semesterService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈校历管理页面〉
+     */
     @RequiresPermissions("semesterInfo")
     @GetMapping("/semester")
     public String semester() {
         return "/pages/input/semester";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<com.blg.edu.entity.vo.SemesterInfoVo>>
+     * @Description: 〈学期列表〉
+     */
     @GetMapping("/semesterInfoList")
     public ResponseEntity<AjaxResponse<SemesterInfoVo>> getSemesterList(HttpServletRequest request) {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");

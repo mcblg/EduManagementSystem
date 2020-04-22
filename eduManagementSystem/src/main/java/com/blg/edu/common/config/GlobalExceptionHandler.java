@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
 
 /**
- * @description:
+ * @description: 全局异常处理
  * @author: chenjiahao
  * @create: 2020-04-08
  */

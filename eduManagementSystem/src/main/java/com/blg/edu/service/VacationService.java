@@ -11,5 +11,11 @@ import java.util.List;
  */
 public interface VacationService {
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.VacationInfoVo>
+     * @Description: 〈假期列表〉
+     */
     List<VacationInfoVo> getVacationList(String universityId);
 }

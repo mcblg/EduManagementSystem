@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * @description:
+ * @description: 场地管理
  * @author: chenjiahao
  * @create: 2020-04-09
  */
@@ -25,12 +25,24 @@ public class FieldController {
     @Autowired
     FieldService fieldService;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: []
+     * @return: java.lang.String
+     * @Description: 〈场地管理页面〉
+     */
     @RequiresPermissions("fieldInfo")
     @GetMapping("/field")
     public String field() {
         return "/pages/input/field";
     }
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [request]
+     * @return: org.springframework.http.ResponseEntity<com.blg.edu.entity.dto.AjaxResponse<java.util.List<com.blg.edu.entity.vo.FieldInfoVo>>>
+     * @Description: 〈场地列表〉
+     */
     @GetMapping("/fieldInfoList")
     public ResponseEntity<AjaxResponse<List<FieldInfoVo>>> getFieldInfoList(HttpServletRequest request) {
         User user = (User) SessionAttributeUtil.getSessionAttribute("user");

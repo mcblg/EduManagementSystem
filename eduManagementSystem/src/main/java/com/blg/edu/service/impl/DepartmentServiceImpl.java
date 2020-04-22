@@ -21,6 +21,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Autowired
     DepartmentMapper departmentMapper;
 
+    /**
+     * @Author: cjh on 2020/4/22
+     * @params: [universityId]
+     * @return: java.util.List<com.blg.edu.entity.vo.DepartmentInfoVo>
+     * @Description: 〈部门列表〉
+     */
     @Override
     public List<DepartmentInfoVo> getDepartmentList(String universityId) {
         return departmentMapper.getDepartmentList(universityId);
