@@ -50,8 +50,8 @@ public class PermissionMgrController {
      */
     @GetMapping("/permInfoList")
     @ResponseBody
-    public ResponseEntity<AjaxResponse<List<PermissionInfoVo>>> getPermINfoList(HttpServletRequest request) {
-        List<PermissionInfoVo> list = permissionService.getPermissionList();
+    public ResponseEntity<AjaxResponse<List<PermissionInfoVo>>> getPermINfoList(@RequestParam(value = "status", required = false) Integer status ,HttpServletRequest request) {
+        List<PermissionInfoVo> list = permissionService.getPermissionList(status);
         return ResponseEntity.ok(AjaxResponse.success(request.getRequestURI(), list));
     }
 

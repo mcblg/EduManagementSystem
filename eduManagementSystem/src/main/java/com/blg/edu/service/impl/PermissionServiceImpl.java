@@ -87,8 +87,8 @@ public class PermissionServiceImpl implements PermissionService {
      * @Description: 〈获取所有权限〉
      */
     @Override
-    public List<PermissionInfoVo> getPermissionList() {
-        return permissionMapper.getPermissionList();
+    public List<PermissionInfoVo> getPermissionList(Integer status) {
+        return permissionMapper.getPermissionList(status);
     }
 
     @Override

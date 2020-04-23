@@ -10,14 +10,14 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @MapperScan("com.blg.edu.mapper")
 @EnableCaching
-public class EduManagementSystemApplication extends SpringBootServletInitializer {
+public class EduManagementSystemApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EduManagementSystemApplication.class, args);
     }
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(EduManagementSystemApplication.class);
-    }
+//    @Override
+//    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+//        return builder.sources(EduManagementSystemApplication.class);
+//    }
 }

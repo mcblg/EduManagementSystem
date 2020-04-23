@@ -42,13 +42,18 @@ public interface PermissionMapper {
             "	AND ur.user_id = #{userId}")
     Set<Permission> getAllPermission(@Param("userId") String userId);
 
-    @Select("SELECT " +
+    @Select("<script>" +
+            "SELECT " +
             " p.*, " +
             " u.user_name create_user_name  " +
             "FROM " +
             " permission p " +
-            " LEFT JOIN USER u ON u.id = p.create_user")
-    List<PermissionInfoVo> getPermissionList();
+            " LEFT JOIN USER u ON u.id = p.create_user " +
+            "<if test='status == 0'>" +
+            " WHERE p.status = 0" +
+            "</if>" +
+            "</script>")
+    List<PermissionInfoVo> getPermissionList(Integer status);
 
     @Select("SELECT " +
             " p.*  " +
@@ -58,6 +63,7 @@ public interface PermissionMapper {
             " role_permission rp  " +
             "WHERE " +
             " rp.role_id = r.id  " +
+            " AND p.status = 0 " +
             " AND rp.permission_id = p.id  " +
             " AND rp.role_id = #{roleId}")
     List<Permission> getPermissionListByRoleId(String roleId);

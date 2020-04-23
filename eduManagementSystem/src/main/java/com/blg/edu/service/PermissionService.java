@@ -54,7 +54,7 @@ public interface PermissionService {
      * @return: java.util.List<com.blg.edu.entity.Permission>
      * @Description: 〈获取所有权限〉
      */
-    List<PermissionInfoVo> getPermissionList();
+    List<PermissionInfoVo> getPermissionList(Integer status);
 
     List<Permission> getParentPerm();
 

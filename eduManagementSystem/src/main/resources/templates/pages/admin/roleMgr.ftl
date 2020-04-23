@@ -249,7 +249,7 @@
         })
 
         $("#permConfig").on('show.bs.modal',function (e) {
-            $.get("${path}/permInfoList", {}, function (rs) {
+            $.get("${path}/permInfoList", {status: 0}, function (rs) {
                 // console.log(rs)
                 if (rs.code == 0) {
                     let html = '';
